@@ -47,7 +47,7 @@ public class View {
         //Fill the new array with values from the 1D array
         for(int outer = 0; outer < moves.length; outer++)
             for(int inner = 0; inner < moves[outer].length; inner++)
-                newMoves[inner*moves.length+outer] = moves[outer][inner];
+                newMoves[outer*moves.length+inner] = moves[outer][inner];
         
         //Display the board from the converted values
         this.showBoard(newMoves);

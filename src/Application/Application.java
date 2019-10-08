@@ -17,6 +17,11 @@ public class Application {
         trying[4] = 'X';
         trying[0] = 'O';
         
+        char[][] biggerAttempt = {{'0','1','2'},{'3','4','5'},{'6','7','8'}};
+        
+        trying = new char[]{'0','1','2','3','4','5','6','7','8'};
+        
+        thisView.showBoard(biggerAttempt);
         thisView.showBoard(trying);
     }
 }
