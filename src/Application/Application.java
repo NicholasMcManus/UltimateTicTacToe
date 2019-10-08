@@ -1,6 +1,7 @@
 package Application;
 
 import java.io.FileNotFoundException;
+import View.View;
 
 public class Application {
 
@@ -10,18 +11,12 @@ public class Application {
      */
     public static void main(String[] args) throws FileNotFoundException {
         
-        View.TicTacToeConsole testBoard;
-        //View.TicTacToeConsole.setPlaceHolder('~');
-        View.TicTacToeConsole.createDefaultFile();
-        
-        testBoard = new View.TicTacToeConsole();
-        
-        //System.out.println(testBoard);
-        
+        View thisView = new View();
+                
         char[] trying = new char[9];
         trying[4] = 'X';
         trying[0] = 'O';
         
-        testBoard.showBoard(trying);
+        thisView.showBoard(trying);
     }
 }

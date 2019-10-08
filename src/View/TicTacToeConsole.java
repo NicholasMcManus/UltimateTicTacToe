@@ -71,7 +71,7 @@ public class TicTacToeConsole {
      * Create a file to act as a base
      * @throws FileNotFoundException 
      */
-    public static void createDefaultFile() throws FileNotFoundException {
+    protected static void createDefaultFile() throws FileNotFoundException {
         
         //Local Variables
         String sampleBoard = "   |   |   \n" +
@@ -109,7 +109,7 @@ public class TicTacToeConsole {
      * Change the placeholder character
      * @param placeHolder Character to replace with player moves
      */
-    public static void setPlaceHolder(char placeHolder)
+    protected static void setPlaceHolder(char placeHolder)
     {
         TicTacToeConsole.placeHolder = placeHolder;
     }
@@ -121,7 +121,7 @@ public class TicTacToeConsole {
     {
         return ((boardTemplate.split(Character.toString(placeHolder))).length == 10);
     }
-
+        
     /**
      * Display the tic-tac-toe board with moves inserted from the passed array
      * @param moves Array of length 9 that holds the characters representing player moves
@@ -129,14 +129,9 @@ public class TicTacToeConsole {
     public void showBoard(char[] moves)
     {
         //Validate input
-        if(moves.length != 9)
+        if(!validateBoard())
         {
             System.out.println("Error: Array is the wrong size");
-            return;
-        }
-        else if(!validateBoard())
-        {
-            System.out.println("The current board is invalid");
             return;
         }
         
@@ -159,6 +154,4 @@ public class TicTacToeConsole {
     public String toString() {
         return boardTemplate + "\nValid: " + this.validateBoard();
     }
-    
-    
 }
