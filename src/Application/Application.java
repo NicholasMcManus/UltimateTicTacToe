@@ -23,5 +23,7 @@ public class Application {
         
         thisView.showBoard(biggerAttempt);
         thisView.showBoard(trying);
+        
+        thisView.startJavaFX(args);
     }
 }

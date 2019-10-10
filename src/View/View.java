@@ -23,6 +23,15 @@ public class View {
     }
     
     /**
+     * Start javafx gui
+     * @param args 
+     */
+    public void startJavaFX(String[] args)
+    {
+        javafx.application.Application.launch(TicTacToeGUI.class,args);
+    }
+    
+    /**
      * Output the moves from the array
      * @param moves 1 Dimensional array with data
      */
