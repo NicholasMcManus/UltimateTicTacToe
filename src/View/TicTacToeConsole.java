@@ -12,7 +12,7 @@ public class TicTacToeConsole {
 
     //Class Variables
     private static char placeHolder = '#';
-    private final static String DEFAULT_FILE = "baseTicTacToe.txt";
+    public final static String DEFAULT_FILE = "baseTicTacToe.txt";
 
     private String boardTemplate = "";
     

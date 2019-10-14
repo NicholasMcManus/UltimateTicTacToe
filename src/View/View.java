@@ -1,8 +1,12 @@
 package View;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class View {
     //Local Variables
     TicTacToeConsole game;
+    TicTacToeGUI guiInstance;
     
     //Constructors
     /**
@@ -10,7 +14,7 @@ public class View {
      */
     public View()
     {
-        game = new TicTacToeConsole();
+        this(TicTacToeConsole.DEFAULT_FILE);
     }
     
     /**
@@ -20,15 +24,18 @@ public class View {
     public View(String fileName)
     {
         game = new TicTacToeConsole(fileName);
-    }
-    
-    /**
-     * Start javafx gui
-     * @param args 
-     */
-    public void startJavaFX(String[] args)
-    {
-        javafx.application.Application.launch(TicTacToeGUI.class,args);
+        guiInstance = new TicTacToeGUI();
+        for(int i = 0; i < 9; i++)
+        {
+            final int button = i;
+            
+            guiInstance.addActionListener(i, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    System.out.println(button);
+                }
+            });
+        }
     }
     
     /**

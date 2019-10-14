@@ -1,51 +1,44 @@
 package View;
 
 //Imports
-import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 
-import javafx.scene.control.Button;
-
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-
-public class TicTacToeGUI extends Application{
-
-    //Class Variables
-    private Stage myStage;
-    private Button[] myButton = new Button[9];
+public class TicTacToeGUI extends JFrame{
     
-    private BorderPane mainPane = new BorderPane();
-    private GridPane gridPane = new GridPane();
-    private Pane myPane = new Pane();
-      
+    //private JFrame initialFrame;
+    //private JPanel myPanel;
+    private TicTacToePanel gamePanel;
+    
+    //Constructor
     /**
-     * Start the Javafx application
-     * @param primaryStage The stage to start with
+     * Construct a usable Tic-Tac-Toe GUI
      */
-    @Override
-    public void start(Stage primaryStage) throws Exception {            
-    //creating a Group object 
-    Group group = new Group(); 
-    this.myStage = primaryStage;
+    public TicTacToeGUI()
+    {
+        //Initialize JFrame
+        super("Tic-Tac-Toe!");
+        
+        gamePanel = new TicTacToePanel();
+        
+        //Initialize the Panel
+        //myPanel = new JPanel();
+        this.add(gamePanel, "Center");   
+        
+        //Finalize the frame
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(750, 750);
+        setVisible(true);        
+    }
     
-    //Creating a Scene by passing the group object, height and width   
-    Scene scene = new Scene(group ,600, 300); 
-      
-    //setting color to the scene 
-    scene.setFill(Color.BROWN);  
-      
-    //Setting the title to Stage. 
-    primaryStage.setTitle("Sample Application"); 
-   
-    //Adding the scene to Stage 
-    primaryStage.setScene(scene); 
-       
-    //Displaying the contents of the stage 
-    primaryStage.show(); 
-    }    
+    /**
+     * Allow the buttons to be set from another class
+     * @param i Button to be changed, 0 is top left
+     * @param action The action to be performed
+     */
+    public void addActionListener(int i, ActionListener action)
+    {
+        gamePanel.getButton(i).addActionListener(action);
+        System.out.println("Button " + i + " bound");
+    }
 }
