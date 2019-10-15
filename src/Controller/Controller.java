@@ -43,6 +43,11 @@ public class Controller {
               space[move-1] = 'X';
               view.showBoard(space);
               nextTurn = true;
+              if (model.checkForWinner(space))
+              {
+                  i = 9;
+                  System.out.println("Player X wins");
+              }
           }
         }
         while (!nextTurn && i%2 != 0)
@@ -61,6 +66,11 @@ public class Controller {
               space[move-1] = 'O';
               view.showBoard(space);
               nextTurn = true;
+              if (model.checkForWinner(space))
+              {
+                  i = 9;
+                  System.out.println("Player O wins");
+              }
           }
         }
         nextTurn = false;
