@@ -1,16 +1,19 @@
 package View;
 
+import java.awt.event.ActionListener;
+
 public class View {
     //Local Variables
-    TicTacToeConsole game;
+    private TicTacToeConsole game;
+    private TicTacToeGUI guiInstance;
     
     //Constructors
     /**
-     * Default Constructor
-     */
+    * Default Constructor
+    */
     public View()
     {
-        game = new TicTacToeConsole();
+        this(TicTacToeConsole.DEFAULT_FILE);
     }
     
     /**
@@ -20,6 +23,7 @@ public class View {
     public View(String fileName)
     {
         game = new TicTacToeConsole(fileName);
+        guiInstance = new TicTacToeGUI();
     }
     
     /**
@@ -29,6 +33,17 @@ public class View {
     public void showBoard(char[] moves)
     {
         game.showBoard(moves);
+        guiInstance.showBoard(moves);
+    }
+    
+    /**
+     * Allow the buttons to be set from another class
+     * @param i Button to be changed, 0 is top left
+     * @param action The action to be performed
+     */
+    public void addActionListener(int i, ActionListener action)
+    {
+        guiInstance.addActionListener(i, action);
     }
     
     /**
