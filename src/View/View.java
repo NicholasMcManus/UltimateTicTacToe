@@ -10,8 +10,8 @@ public class View {
     
     //Constructors
     /**
-     * Default Constructor
-     */
+    * Default Constructor
+    */
     public View()
     {
         this(TicTacToeConsole.DEFAULT_FILE);
@@ -45,6 +45,7 @@ public class View {
     public void showBoard(char[] moves)
     {
         game.showBoard(moves);
+        guiInstance.showBoard(moves);
     }
     
     /**

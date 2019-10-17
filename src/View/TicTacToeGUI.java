@@ -1,14 +1,15 @@
 package View;
 
 //Imports
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 public class TicTacToeGUI extends JFrame{
     
-    //private JFrame initialFrame;
-    //private JPanel myPanel;
     private TicTacToePanel gamePanel;
+    private Color player1Color = Color.RED;
+    private Color player2Color = Color.BLUE;
     
     //Constructor
     /**
@@ -30,6 +31,69 @@ public class TicTacToeGUI extends JFrame{
         setSize(750, 750);
         setVisible(true);        
     }
+
+    /**
+     * 
+     * @return 
+     */
+    public Color getPlayer1Color() {
+        return player1Color;
+    }
+
+    /**
+     * 
+     * @param player1Color 
+     */
+    public void setPlayer1Color(Color player1Color) {
+        this.player1Color = player1Color;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public Color getPlayer2Color() {
+        return player2Color;
+    }
+
+    /**
+     * 
+     * @param player2Color 
+     */
+    public void setPlayer2Color(Color player2Color) {
+        this.player2Color = player2Color;
+    }
+    
+    /**
+     * Display the tic-tac-toe board with moves inserted from the passed array
+     * @param moves Array of length 9 that holds the characters representing player moves
+     */
+    public void showBoard(char[] moves)
+    {
+        System.out.println("Update the GUI!!!");
+        if(moves.length != 9)
+        {
+            System.out.println("Invalid Move List");
+            return;
+        }
+        //Local variables
+        char p1 = 'x', p2 = 'o';
+        
+        //Iterate the loop and update as needed
+        for(int i = 0; i < 9; i++)
+        {
+            //System.out.println("Check move " + moves[i]);
+            if(Character.toLowerCase(moves[i]) == p1)
+            {
+                gamePanel.setSquare(i,player1Color);
+            }
+            else if(Character.toLowerCase(moves[i]) == p2)
+            {
+                gamePanel.setSquare(i,player2Color);
+            }
+            
+        }
+    }
     
     /**
      * Allow the buttons to be set from another class
@@ -39,6 +103,6 @@ public class TicTacToeGUI extends JFrame{
     public void addActionListener(int i, ActionListener action)
     {
         gamePanel.getButton(i).addActionListener(action);
-        System.out.println("Button " + i + " bound");
+        //System.out.println("Button " + i + " bound");
     }
 }

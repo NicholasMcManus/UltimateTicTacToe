@@ -1,14 +1,14 @@
 package View;
 
 //Import Statements
+import java.awt.Color;
 import javax.swing.JPanel;
 
 //Swing Components
 import javax.swing.JButton;
 
-//AWT Conponents
+//AWT Components
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
 
 public class TicTacToePanel extends JPanel{
     //Class Variables
@@ -53,9 +53,18 @@ public class TicTacToePanel extends JPanel{
         repaint();
     }
     
+    //Write over a button with a square to show player move and disable button
+    protected void setSquare(int i, Color playerColor)
+    {
+        //System.out.println("Set " + i + " " + playerColor);
+        ticTacToeButtons[i].setBackground(playerColor);
+        ticTacToeButtons[i].setContentAreaFilled(true);
+        ticTacToeButtons[i].setEnabled(false);
+    }
+    
     protected JButton getButton(int i)
     {
-        System.out.println("Button " + i + " retrieved");
+        //System.out.println("Button " + i + " retrieved");
         return ticTacToeButtons[i];
     }
 }
