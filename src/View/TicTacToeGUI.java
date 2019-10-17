@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 
 public class TicTacToeGUI extends JFrame{
     
+    //Class Variables
     private TicTacToePanel gamePanel;
     private Color player1Color = Color.RED;
     private Color player2Color = Color.BLUE;
@@ -33,32 +34,32 @@ public class TicTacToeGUI extends JFrame{
     }
 
     /**
-     * 
-     * @return 
+     * Allow the First Player's color to be retrieved
+     * @return The color of the first player
      */
     public Color getPlayer1Color() {
         return player1Color;
     }
 
     /**
-     * 
-     * @param player1Color 
+     * Allow the First Player's color to be set
+     * @param player1Color The new color of the first player
      */
     public void setPlayer1Color(Color player1Color) {
         this.player1Color = player1Color;
     }
 
     /**
-     * 
-     * @return 
+     * Allow the Second Player's color to be retrieved
+     * @return The color of the second player
      */
     public Color getPlayer2Color() {
         return player2Color;
     }
 
     /**
-     * 
-     * @param player2Color 
+     * Allow the Second Player's color to be set
+     * @param player2Color The new color of the second player
      */
     public void setPlayer2Color(Color player2Color) {
         this.player2Color = player2Color;
@@ -70,10 +71,10 @@ public class TicTacToeGUI extends JFrame{
      */
     public void showBoard(char[] moves)
     {
-        System.out.println("Update the GUI!!!");
+        //System.out.println("Update the GUI!!!");
         if(moves.length != 9)
         {
-            System.out.println("Invalid Move List");
+            System.out.println("Invalid Move List.");
             return;
         }
         //Local variables
