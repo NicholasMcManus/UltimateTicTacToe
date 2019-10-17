@@ -5,8 +5,8 @@ import Model.Model;
 
 public class Controller {
     //------ Variables ------\\
-    Model model = new Model();
-    View view = new View();
+    Model model;
+    View view;
     private char[] space = new char[9];
     private int move;
     private boolean nextTurn = false;
