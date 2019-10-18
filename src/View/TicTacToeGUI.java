@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
-public class TicTacToeGUI extends JFrame{
+public class TicTacToeGUI extends JFrame implements TicTacToeBoard{
     
     //Class Variables
     private TicTacToePanel gamePanel;
@@ -69,6 +69,7 @@ public class TicTacToeGUI extends JFrame{
      * Display the tic-tac-toe board with moves inserted from the passed array
      * @param moves Array of length 9 that holds the characters representing player moves
      */
+    @Override
     public void showBoard(char[] moves)
     {
         //System.out.println("Update the GUI!!!");

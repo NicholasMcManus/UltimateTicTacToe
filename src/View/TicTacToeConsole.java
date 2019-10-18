@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TicTacToeConsole {
+public class TicTacToeConsole implements TicTacToeBoard{
 
     //Class Variables
     private static char placeHolder = '#';
@@ -126,6 +126,7 @@ public class TicTacToeConsole {
      * Display the tic-tac-toe board with moves inserted from the passed array
      * @param moves Array of length 9 that holds the characters representing player moves
      */
+    @Override
     public void showBoard(char[] moves)
     {
         //Validate input

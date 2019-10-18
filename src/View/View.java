@@ -1,11 +1,13 @@
 package View;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class View {
     //Local Variables
-    private TicTacToeConsole game;
-    private TicTacToeGUI guiInstance;
+    private ArrayList<TicTacToeBoard> games = new ArrayList();
+    //private TicTacToeConsole game;
+    //private TicTacToeGUI guiInstance;
     
     //Constructors
     /**
@@ -22,8 +24,8 @@ public class View {
      */
     public View(String fileName)
     {
-        game = new TicTacToeConsole(fileName);
-        guiInstance = new TicTacToeGUI();
+        games.add(new TicTacToeConsole(fileName));
+        games.add(new TicTacToeGUI());
     }
     
     /**
@@ -32,8 +34,7 @@ public class View {
      */
     public void showBoard(char[] moves)
     {
-        game.showBoard(moves);
-        guiInstance.showBoard(moves);
+        games.forEach(var -> var.showBoard(moves));
     }
     
     /**
@@ -43,7 +44,12 @@ public class View {
      */
     public void addActionListener(int i, ActionListener action)
     {
-        guiInstance.addActionListener(i, action);
+        games.forEach(e -> 
+        {
+            if(e instanceof TicTacToeGUI) 
+                    ((TicTacToeGUI)e).addActionListener(i, action);
+        });
+            
     }
     
     /**

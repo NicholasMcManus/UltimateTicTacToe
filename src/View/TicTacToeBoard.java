@@ -9,6 +9,6 @@
 
 package View;
 
-public abstract class TicTacToeBoard {
-    
+interface TicTacToeBoard {
+    void showBoard(char[] moves);
 }
