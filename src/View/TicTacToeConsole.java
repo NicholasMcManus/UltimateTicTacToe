@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Frame;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -7,6 +8,7 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class TicTacToeConsole implements TicTacToeBoard{
 
@@ -160,6 +162,15 @@ public class TicTacToeConsole implements TicTacToeBoard{
         }
         
         System.out.println(message);
+    }
+
+    /**
+     * 
+     * @param winner 
+     */
+    @Override
+    public void showWin(char winner) {
+        System.out.println(winner + " has won the game!");
     }
     
     /**

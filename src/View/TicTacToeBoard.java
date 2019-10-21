@@ -11,4 +11,5 @@ package View;
 
 interface TicTacToeBoard {
     void showBoard(char[] moves);
+    void showWin(char winner);
 }

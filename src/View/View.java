@@ -64,6 +64,14 @@ public class View {
             
     }
     
+    public void declareWinner(char winner)
+    {
+        games.forEach(e ->
+        {
+           e.showWin(winner);
+        });
+    }
+    
     /**
      * Output the moves from an array
      * @param moves The array containing user moves

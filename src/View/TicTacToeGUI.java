@@ -2,8 +2,10 @@ package View;
 
 //Imports
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class TicTacToeGUI extends JFrame implements TicTacToeBoard{
     
@@ -96,6 +98,18 @@ public class TicTacToeGUI extends JFrame implements TicTacToeBoard{
             
         }
     }
+    
+    /**
+     * 
+     * @param winner 
+     */
+    @Override
+    public void showWin(char winner) {
+        
+        JOptionPane.showMessageDialog(new Frame(), winner + " has won!");
+    }
+    
+    
     
     /**
      * Allow the buttons to be set from another class
