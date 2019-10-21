@@ -6,8 +6,6 @@ import java.util.ArrayList;
 public class View {
     //Local Variables
     private ArrayList<TicTacToeBoard> games = new ArrayList();
-    //private TicTacToeConsole game;
-    //private TicTacToeGUI guiInstance;
     
     //Constructors
     /**
@@ -35,6 +33,20 @@ public class View {
     public void showBoard(char[] moves)
     {
         games.forEach(var -> var.showBoard(moves));
+    }
+    
+    /**
+     * Uses a scanner to read in a tic-tac-toe move
+     * @return The requested space or -1 if no console views exist
+     */
+    public int consoleMove()
+    {
+        for(TicTacToeBoard board : games)
+        {
+            if(board instanceof TicTacToeConsole)
+                return ((TicTacToeConsole)board).getPlayerTurn();
+        }
+        return -1;
     }
     
     /**

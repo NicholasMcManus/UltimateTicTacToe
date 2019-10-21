@@ -106,6 +106,20 @@ public class TicTacToeConsole implements TicTacToeBoard{
     }
 
     /**
+     * Get the user input and return
+     * @return The input from the user
+     */
+    public int getPlayerTurn()
+    {
+        Scanner input = new Scanner(System.in);
+        int num;
+        
+        System.out.println("Enter number (1-9) to move in the corresponding square");
+        num = input.nextInt();
+        return num;
+    }
+    
+    /**
      * Change the placeholder character
      * @param placeHolder Character to replace with player moves
      */
