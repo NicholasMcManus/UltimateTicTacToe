@@ -100,13 +100,26 @@ public class TicTacToeGUI extends JFrame implements TicTacToeBoard{
     }
     
     /**
-     * 
-     * @param winner 
+     * Show the winner given the character of the winner
+     * @param winner The character that won the game
      */
     @Override
-    public void showWin(char winner) {
+    public void showWin(char winner) {        
+        for(int i = 0; i < 9; i++)
+        {
+            if(Character.toLowerCase(winner) == 'x')
+            {
+                gamePanel.setSquare(i,player1Color);
+            }
+            else if(Character.toLowerCase(winner) == 'o')
+            {
+                gamePanel.setSquare(i,player2Color);
+            }
+        }
         
+        //Likely need to remove these lines to get 9x9 running
         JOptionPane.showMessageDialog(new Frame(), winner + " has won!");
+        System.exit(0);
     }
     
     

@@ -161,12 +161,13 @@ public class TicTacToeConsole implements TicTacToeBoard{
             message += (moves[i] == '\0' ? ' ' : moves[i]) + components[i+1];
         }
         
+        //Output the modified board
         System.out.println(message);
     }
 
     /**
-     * 
-     * @param winner 
+     * Display the winner of the tic-tac-toe game
+     * @param winner The character of who won
      */
     @Override
     public void showWin(char winner) {

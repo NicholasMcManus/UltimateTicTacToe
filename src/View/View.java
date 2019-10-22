@@ -64,6 +64,10 @@ public class View {
             
     }
     
+    /**
+     * Declare someone the winner of the game
+     * @param winner The character of the winner
+     */
     public void declareWinner(char winner)
     {
         games.forEach(e ->
