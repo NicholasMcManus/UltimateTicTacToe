@@ -23,6 +23,10 @@ public class Model {
     
     
     //------ Other Methods ------\\
+    /**
+     * Get user input for a 3x3 grid
+     * @return The chosen square
+     */
     public int playerTurn()
     {
         int num;
@@ -31,6 +35,11 @@ public class Model {
         return num;
     }
     
+    /**
+     * Determine if someone has won the board
+     * @param spaces The array holding the moves played
+     * @return If someone has won or not
+     */
     public boolean checkForWinner(char[] spaces)
     {
         //---- Horizontal ----\\

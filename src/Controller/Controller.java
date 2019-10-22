@@ -26,6 +26,9 @@ public class Controller {
     }
     
     //------ Other Methods ------\\
+    /**
+     * Run the 3x3 program using console input and output
+     */
     public void move()
     {
       for(int i = 0; i < 9; i++)
@@ -80,6 +83,10 @@ public class Controller {
       }
     }
     
+    /**
+     * A re-write of the 3x3 console based tic-tac-toe game
+     * Uses more internal methods shared with GUI based applications
+     */
     public void newMove()
     {
         //There are 9 moves in a standard tic-tac-toe board
@@ -95,9 +102,10 @@ public class Controller {
                 currentMove = view.consoleMove()-1;
             }
             
-            System.out.println("Selected space: " + currentMove);
-            
+            //System.out.println("Selected space: " + currentMove);
+            //Send the valid move to the method
             setMove(currentMove);
+            //Update the view
             view.showBoard(space);
             
             winner = this.checkWin();
@@ -110,14 +118,24 @@ public class Controller {
         }
     }
     
+    /**
+     * Set the move passed to the correct player
+     * @param space 
+     */
     private void setMove(int space)
     {
+        //Check the move bounds
         if(space < 0 || space > 8)
             System.out.println("Invalid Move Detected");
         
+        //Figure out who actually played a move
         this.space[space] = (turnCount++%2 == 0 ? 'X' : 'O');
     }
     
+    /**
+     * Figure out if someone won using the model
+     * @return The character of the winning player if someone won '\0' represents no win
+     */
     private char checkWin()
     {
         char winner = '\0';
@@ -126,28 +144,39 @@ public class Controller {
             //Someone has won
             //Determine which character won
             winner = (++turnCount)%2 == 0 ? 'X' : 'O';
-            System.out.println(winner);
         }
         
         return winner;
     }
     
+    /**
+     * Initialize the GUI buttons if they are to be used
+     */
     public void initializeGUIButtons()
     {
+        //For every button in the 3x3
         for(int i = 0; i < 9; i++)
         {
+            //Appease the lambda
             final int num = i;
-        
+            
+            //Add an action listener as defined below
             view.addActionListener(i, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                //Is the move valid
                 if(!checkSpace(num))
                 {
+                    //If so
                     char winner;
                     
+                    //Set the move attempt
                     setMove(num);
+                    
+                    //Update the view
                     view.showBoard(space);
                     
+                    //Check for a winner and declare one if one is found
                     winner = checkWin();
                     if(winner != '\0')
                         view.declareWinner(winner);
@@ -164,6 +193,7 @@ public class Controller {
      */
     public boolean checkSpace(int move)
     {
+        //If the space is occupied by either x or o return true
         return space[move] == 'X' || space[move] == 'O';
     }
     
