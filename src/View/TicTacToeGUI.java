@@ -27,14 +27,17 @@ public class TicTacToeGUI extends JFrame implements TicTacToeBoard{
         
         //Initialize the Panel
         //myPanel = new JPanel();
-        this.add(gamePanel, "Center");   
-        
+        this.add(gamePanel, "Center");
+    }
+
+    public void startTicTacToeGame()
+    {
         //Finalize the frame
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(750, 750);
-        setVisible(true);        
+        setVisible(true);     
     }
-
+    
     /**
      * Allow the First Player's color to be retrieved
      * @return The color of the first player
@@ -105,16 +108,14 @@ public class TicTacToeGUI extends JFrame implements TicTacToeBoard{
      */
     @Override
     public void showWin(char winner) {        
-        for(int i = 0; i < 9; i++)
+        
+        if(Character.toLowerCase(winner) == 'x')
         {
-            if(Character.toLowerCase(winner) == 'x')
-            {
-                gamePanel.setSquare(i,player1Color);
-            }
-            else if(Character.toLowerCase(winner) == 'o')
-            {
-                gamePanel.setSquare(i,player2Color);
-            }
+            gamePanel.fillBoard(player1Color);
+        }
+        else if(Character.toLowerCase(winner) == 'o')
+        {   
+            gamePanel.fillBoard(player2Color);
         }
         
         //Likely need to remove these lines to get 9x9 running

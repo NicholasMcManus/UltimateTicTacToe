@@ -27,8 +27,8 @@ public class TicTacToePanel extends JPanel{
         
         //Make a 3x3 View
         layout = new GridLayout(3,3);
-        layout.setHgap(10);
-        layout.setVgap(10);
+        layout.setHgap(0);
+        layout.setVgap(0);
         
         //Initialize the button array
         ticTacToeButtons = new JButton[9];
@@ -48,12 +48,17 @@ public class TicTacToePanel extends JPanel{
             myButton.setContentAreaFilled(false);
             this.add(myButton);
         }
-        
+                
         validate();
         repaint();
     }
     
     //Write over a button with a square to show player move and disable button
+    /**
+     * Update the specified square with the color passed
+     * @param i The square to be modified
+     * @param playerColor The color to be changed to
+     */
     protected void setSquare(int i, Color playerColor)
     {
         //System.out.println("Set " + i + " " + playerColor);
@@ -62,6 +67,21 @@ public class TicTacToePanel extends JPanel{
         ticTacToeButtons[i].setEnabled(false);
     }
     
+    /**
+     * Fill the board with the provided color
+     * @param playerColor The color to fill the board with
+     */
+    protected void fillBoard(Color playerColor)
+    {
+        for(int i = 0; i < 9; i++)
+            this.setSquare(i, playerColor);
+    }
+    
+    /**
+     * Return the specified button for modification
+     * @param i The button selected
+     * @return A direct reference to the button
+     */
     protected JButton getButton(int i)
     {
         //System.out.println("Button " + i + " retrieved");

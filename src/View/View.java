@@ -24,6 +24,8 @@ public class View {
     {
         games.add(new TicTacToeConsole(fileName));
         games.add(new TicTacToeGUI());
+        
+        games.forEach(e -> {if (e instanceof TicTacToeGUI) ((TicTacToeGUI) e).startTicTacToeGame();});
     }
     
     /**
