@@ -1,6 +1,5 @@
 package View;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class UltimateView {
@@ -42,22 +41,7 @@ public class UltimateView {
      */
     public void addActionListener(int board, int button, ActionListener action)
     {
-        //uGame.addActionListener(board, button, action);
-        
-        for(int lBoard = 0; lBoard < 9; lBoard++)
-        {
-            for(int lButton = 0; lButton < 9; lButton++)
-            {
-                final int F_BOARD = lBoard, F_BUTTON = lButton;
-                System.out.println("Call Bind (" + F_BOARD + "," + F_BUTTON + ")");
-                uGame.addActionListener(lBoard, lButton, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent ae) {
-                        System.out.println("Board: " + F_BOARD + " Button: " + F_BUTTON);
-                    }
-                });
-            }
-        }
+        uGame.addActionListener(board, button, action);
     }
     
     /**
