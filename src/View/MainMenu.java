@@ -51,9 +51,6 @@ public class MainMenu extends JPanel  {
         quitButton.setBackground(Color.RED);
         add(quitButton);
         
-        creator = new JLabel("<html><div style = 'text-align: center;'>Creators: Jaemi, Tahjir, and Jimmy.<br/>");
-        creator.setBounds(570, 500, 120, 45);
-        add(creator);
         
         startButton.setBounds(570, 300, 120, 45);
         howtoButton.setBounds(570, 375, 120, 45);
