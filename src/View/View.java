@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class View {
     //Local Variables
     private ArrayList<TicTacToeBoard> games = new ArrayList();
-    
+    private UltimateGUI uGame;
     //Constructors
     /**
     * Default Constructor

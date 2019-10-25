@@ -1,6 +1,5 @@
 package View;
 
-import java.awt.Frame;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -8,7 +7,6 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 public class TicTacToeConsole implements TicTacToeBoard{
 
@@ -165,6 +163,29 @@ public class TicTacToeConsole implements TicTacToeBoard{
         System.out.println(message);
     }
 
+    /**
+     * Output the moves from an array
+     * @param moves The array containing user moves
+     */
+    @Override
+    public void showBoard(char[][] moves)
+    {
+        //Make sure to reduce indexOutOfBounds errors
+        if(moves.length == 0)
+            return;
+        
+        //Make the local variable able to support all values
+        char[] newMoves = new char[(moves.length*moves[0].length)];
+        
+        //Fill the new array with values from the 1D array
+        for(int outer = 0; outer < 3; outer++)
+            for(int inner = 0; inner < 3; inner++)
+                newMoves[outer*moves.length+inner] = moves[outer][inner];
+        
+        //Display the board from the converted values
+        this.showBoard(newMoves);
+    }
+    
     /**
      * Display the winner of the tic-tac-toe game
      * @param winner The character of who won

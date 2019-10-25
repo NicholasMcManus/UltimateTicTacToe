@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 //AWT Components
 import java.awt.GridLayout;
 import java.awt.Color;
+import javax.swing.JButton;
 
 public class UltimatePanel extends JPanel{
 
@@ -36,6 +37,17 @@ public class UltimatePanel extends JPanel{
             this.add(tPanels[i]);
             tPanels[i].setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         }
+    }
+    
+    /**
+     * Return the specified button for modification
+     * @param board The board to select the button from
+     * @param button The button selected
+     * @return A direct reference to the button
+     */
+    protected JButton getButton(int board, int button)
+    {
+        return this.tPanels[board].getButton(button);
     }
     
     /**

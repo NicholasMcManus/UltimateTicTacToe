@@ -2,6 +2,7 @@ package View;
 
 import java.awt.Color;
 import java.awt.Frame;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -18,7 +19,7 @@ public class UltimateGUI extends JFrame implements TicTacToeBoard{
     public UltimateGUI()
     {
         //Initialize JFrame
-        super("Tic-Tac-Toe!");
+        super("Ultimate Tic-Tac-Toe!");
         
         gamePanel = new UltimatePanel();
         
@@ -59,6 +60,9 @@ public class UltimateGUI extends JFrame implements TicTacToeBoard{
         this.player2Color = player2Color;
     }
 
+    /**
+     * Start the game!
+     */
     public void startTicTacToeGame()
     {
         //Finalize the frame
@@ -87,6 +91,7 @@ public class UltimateGUI extends JFrame implements TicTacToeBoard{
      * Given an array of character arrays place the indicated moves in their positions
      * @param moves The array of moves
      */
+    @Override
     public void showBoard(char[][] moves)
     {
         for(int i = 0; i < moves.length; i++)
@@ -127,6 +132,18 @@ public class UltimateGUI extends JFrame implements TicTacToeBoard{
     }
     
     /**
+     * Allow the buttons to be set from another class
+     * @param board The board to select the button from. 0 is top-left
+     * @param button The button selected. 0 is top-left
+     * @param action The action to be performed
+     */
+    public void addActionListener(int board, int button, ActionListener action)
+    {
+        System.out.println("Bind (" + board + "," +button+")");
+        gamePanel.getButton(board,button).addActionListener(action);
+    }
+    
+    /**
      * Provided a winner indicate and declare the winner
      * @param winner The character of the player who won the game
      */
@@ -141,7 +158,7 @@ public class UltimateGUI extends JFrame implements TicTacToeBoard{
             gamePanel.fillBoard(player2Color);
         }
         
-        //Likely need to remove these lines to get 9x9 running
+        //Show a more direct message that someone won
         JOptionPane.showMessageDialog(new Frame(), winner + " has won!");
         System.exit(0);
     }
