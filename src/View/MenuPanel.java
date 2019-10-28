@@ -1,40 +1,42 @@
-
-/**
-	File name: InitialPanel.java
-	Short description:
-	IST 242 Assignment:
-	@author Jaemi Hammond
-	@version 1.01 Apr 16, 2019
-*/
-
 package View;
 
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
-/**
- *
- * @author jbh5619
- */
-
-public class InitialPanel extends JPanel {
+public class MenuPanel extends JFrame {
     // attributes
     private MainMenu mm;
    
-    
-    public InitialPanel() {
-        super();
-        setLayout(null);
+    /**
+     * Default Constructor
+     */
+    public MenuPanel() {
+        super("Main Menu");
         setSize(1200, 800);
         
         mm = new MainMenu();
-        add(mm);     
-        mm.setVisible(true);
+        this.add(mm, "Center");     
+        System.out.println("Show the Main Menu Panel");
         
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
+    public MenuPanel(ArrayList<JButton> buttonList)
+    {
+        super("Main Menu");
+        setSize(1200, 800);
+        
+        mm = new MainMenu(buttonList);
+        this.add(mm, "Center");     
+        System.out.println("Show the Main Menu Panel");
+        
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+    
     // Set methods - one set method for each instance variable defined above
     //             - purpose is to pass in a value stored in the private variable
 

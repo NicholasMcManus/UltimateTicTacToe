@@ -11,6 +11,9 @@ package View;
  *
  * @author tme5209
  */
+
+import java.util.ArrayList;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -27,7 +30,7 @@ public class MainMenu extends JPanel  {
     private JButton startButton;
     private JButton howtoButton;
     private JButton quitButton;
-    
+    private ArrayList<JButton> menuList;
     //----Constructors----\\
     /**
      * Method to initialize MenuPanel to default values
@@ -35,28 +38,68 @@ public class MainMenu extends JPanel  {
     public MainMenu()
     {
         super();
-        setLayout(new BorderLayout());
-        setLayout(null);
-        setSize(1200, 800);
+        
+        menuList = new ArrayList();
         
         startButton = new JButton("PLAY");
         startButton.setBackground(Color.GREEN);
-        add(startButton);
+        menuList.add(startButton);
         
         //setBackground(Color.LIGHT_GRAY);
         howtoButton = new JButton("How To Play");
-        add(howtoButton);
+        menuList.add(howtoButton);
         
         quitButton = new JButton("EXIT");
         quitButton.setBackground(Color.RED);
-        add(quitButton);
-        
+        menuList.add(quitButton);
         
         startButton.setBounds(570, 300, 120, 45);
         howtoButton.setBounds(570, 375, 120, 45);
         quitButton.setBounds(570, 450, 120, 45);
+        
+        this.configurePanel();
+        this.addButtons(menuList);
     }
     
+    /**
+     * Construct a menu with provided buttons
+     * @param menuButtons The list of buttons to be added to the panel
+     */
+    public MainMenu(ArrayList<JButton> menuButtons)
+    {
+        super();
+        menuList = menuButtons;
+        
+        configurePanel();
+        addButtons(menuButtons);
+    }
+    
+    /**
+     * Configure the dimensions of the JPanel
+     */
+    private void configurePanel()
+    {
+        //Construct a new layout based on the number of buttons to be displayed
+        GridLayout myLayout = new GridLayout(1,1);
+        myLayout.setRows(menuList.size());
+        setLayout(myLayout);
+        
+        setSize(1200, 800);
+    }
+    
+    /**
+     * Add the buttons to the JPanel
+     * @param buttons 
+     */
+    private void addButtons(ArrayList<JButton> buttons)
+    {
+        //Clear the current list, in case this is being called twice
+        this.removeAll();
+        
+        buttons.forEach(current -> {
+            this.add(current);
+        });
+    }
 
     //----Get Methods----\\
     public JButton getStartButton() {

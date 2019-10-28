@@ -139,7 +139,6 @@ public class UltimateGUI extends JFrame implements TicTacToeBoard{
      */
     public void addActionListener(int board, int button, ActionListener action)
     {
-        System.out.println("Bind (" + board + "," +button+")");
         gamePanel.getButton(board,button).addActionListener(action);
     }
     
