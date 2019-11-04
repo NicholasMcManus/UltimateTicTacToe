@@ -48,6 +48,16 @@ public class MenuPanel extends JFrame {
     }
     // Additional methods -- such as for calculation, display
     
+    public void open()
+    {
+        this.setVisible(true);
+    }
+    
+    public void close()
+    {
+        this.setVisible(false);
+    }
+    
     public void setActionListeners(ActionListener al)
     {
         // add Action listeners to every button in every panel
