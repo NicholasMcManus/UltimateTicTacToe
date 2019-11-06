@@ -1,6 +1,7 @@
 package Application;
 
 //import Controller.Controller;
+import java.awt.Color;
 import java.io.FileNotFoundException;
 
 public class Application {
@@ -10,7 +11,7 @@ public class Application {
      * @param args String array, currently unused
      */
     public static void main(String[] args) throws FileNotFoundException {
-        //Testing the UltimateView Functions
+        //Testing the UltimateView Functions        
         View.UltimateView uView = new View.UltimateView();
         
         char[][] moves = new char[9][9];
@@ -32,14 +33,16 @@ public class Application {
         winTest[6] = 'o';
         
         /*/
-        uView.startGame();
-        uView.addActionListener(0, 0, null);
+        uView.startGame(Color.GRAY,Color.BLACK);
+        //uView.addActionListener(0, 0, null);
         uView.showBoard(moves);
         uView.showBoard(winTest);
         //*/
         
-        //Testing the Main Menu
+        //Launching Menu
         Controller.MainMenuController mc = new Controller.MainMenuController();
+        
+        //Testing game panel a bit more        
         //gamePane.showWin('x');
         //Controller controller = new Controller();
 

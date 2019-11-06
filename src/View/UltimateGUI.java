@@ -61,16 +61,29 @@ public class UltimateGUI extends JFrame implements TicTacToeBoard{
     }
 
     /**
-     * Start the game!
+     * Start the game with default arguments!
      */
     public void startTicTacToeGame()
     {
+        startTicTacToeGame(Color.RED, Color.BLUE);  
+    }
+
+    /**
+     * Start the game!
+     * @param player1Color Color to use for player 1
+     * @param player2Color Color to use for player 2
+     */
+    public void startTicTacToeGame(Color player1Color, Color player2Color)
+    {
+        this.player1Color = player1Color;
+        this.player2Color = player2Color;
+        
         //Finalize the frame
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(750, 750);
         setVisible(true);     
     }
-
+    
     /**
      * Display the macro-board
      * @param moves 

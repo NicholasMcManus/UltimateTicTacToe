@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.event.ActionListener;
 
 public class UltimateView {
@@ -31,6 +32,16 @@ public class UltimateView {
     public void startGame()
     {
         uGame.startTicTacToeGame();
+    }
+    
+    /**
+     * Start the tic-tac-toe game with custom player move colors
+     * @param player1Color The color to use for player 1
+     * @param player2Color The color to use for player 2
+     */
+    public void startGame(Color player1Color, Color player2Color)
+    {
+        uGame.startTicTacToeGame(player1Color, player2Color);
     }
     
     /**
