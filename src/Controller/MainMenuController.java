@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 
 import View.MenuPanel;
-import View.UltimateGUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -35,8 +34,8 @@ public class MainMenuController {
         menuList.add(startButton);
         
         startButton.addActionListener((ActionEvent ae) -> {
-            UltimateGUI ug = new UltimateGUI();
-            ug.startTicTacToeGame();
+            UltimateController uc = new UltimateController();
+            uc.start(player1Color, player2Color);
             menuPanel.close();
         });
         

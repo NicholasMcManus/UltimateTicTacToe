@@ -32,14 +32,13 @@ public class UltimateController {
     {
         model = new Model();
         uView = new UltimateView();
-        //uView.showBoard(space);
         initializeGUIButtons();
     }
     
     /**
      * Initialize the GUI buttons if they are to be used
      *//**/
-    public void initializeGUIButtons()
+    private void initializeGUIButtons()
     {
         //For every button in the 3x3
         //System.out.println("Initializing buttons...");
@@ -65,9 +64,17 @@ public class UltimateController {
                     uView.showBoard(moves);
                     
                     //Check for a winner and declare one if one is found
-                    winner = checkWin();
+                    winner = checkWin(moves[board]);
                     if(winner != '\0')
-                        uView.declareWinner(winner);//*/
+                    {
+                        subWin(board, winner);
+                        winner = checkWin(space);
+                        uView.showBoard(space);
+                        if(winner != '\0')
+                        {
+                            uView.declareWinner(winner);
+                        }
+                    }
                 }
         });
             }
@@ -75,9 +82,28 @@ public class UltimateController {
         //System.out.println("Buttons initialized!");
     }/**/
     
+    private void subWin(int board, char winner)
+    {
+        space[board] = winner;
+        moves[board] = new char[9];
+    }
+    
+    /**
+     * Start the game
+     */
     public void start()
     {
         uView.startGame();
+    }
+    
+    /**
+     * Start the game with specific colors
+     * @param player1 The color of player 1
+     * @param player2 The color of player 2
+     */
+    public void start(Color player1, Color player2)
+    {
+        uView.startGame(player1, player2);
     }
     
     /**
@@ -100,14 +126,18 @@ public class UltimateController {
         uView.showBoard(space);
     }
     
-    private char checkWin()
+    /**
+     * Check the thing for a win
+     * @return The character of the winner if one exists
+     */
+    private char checkWin(char[] board)
     {
         char winner = '\0';
-        if(model.checkForUltimateWinner(moves))
+        if(model.checkForWinner(board))
         {
             //Someone has won
             //Determine which character won
-            winner = (turnCount)%2 == 0 ? 'X' : 'O';
+            winner = (turnCount-1)%2 == 0 ? 'X' : 'O';
         }
         
         return winner;

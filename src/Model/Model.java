@@ -114,16 +114,5 @@ public class Model {
         {
             return false;
         }
-    }
-    
-    /**
-     * Determine if someone has won the Ultimate board
-     * @param spaces The 2D array holding the individual boards and buttons
-     * @return If someone has won or not
-     */
-    public boolean checkForUltimateWinner(char[][] spaces)
-    {
-        return false; // nothing yet, for testing purposes
-    }
-    
+    }    
 } // End of class
