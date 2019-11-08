@@ -92,7 +92,7 @@ public class Model {
         {
             return true;
         }
-        //---- Horizontal ----\\
+        //---- Diagonal ----\\
         else if (spaces[0] == 'X' && spaces[4] == 'X' && spaces[8] == 'X')
         {
             return true;
@@ -114,6 +114,16 @@ public class Model {
         {
             return false;
         }
+    }
+    
+    /**
+     * Determine if someone has won the Ultimate board
+     * @param spaces The 2D array holding the individual boards and buttons
+     * @return If someone has won or not
+     */
+    public boolean checkForUltimateWinner(char[][] spaces)
+    {
+        return false; // nothing yet, for testing purposes
     }
     
 } // End of class

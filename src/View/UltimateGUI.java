@@ -105,7 +105,7 @@ public class UltimateGUI extends JFrame implements TicTacToeBoard{
      * @param i 
      * @param moves 
      */
-    private void showSubBoard(int i, char[] moves)
+    public void showSubBoard(int i, char[] moves)
     {
         if(moves.length != 9)
         {

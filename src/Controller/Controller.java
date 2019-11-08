@@ -2,6 +2,7 @@ package Controller;
 
 import View.View;
 import Model.Model;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -195,6 +196,23 @@ public class Controller {
     {
         //If the space is occupied by either x or o return true
         return space[move] == 'X' || space[move] == 'O';
+    }
+    
+    private Color claimSpace(int index)
+    {
+        Color r = Color.red; // change later with color picker
+        Color b = Color.blue;  // change later with color picker
+        if(turnCount % 2 == 0)
+        {
+            //view
+            turnCount++;
+            return r;
+        }
+        else
+        {
+            turnCount++;
+            return b;
+        }
     }
     
 } // End of class

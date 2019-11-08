@@ -61,4 +61,12 @@ public class UltimateView {
     {
         uGame.showBoard(moves);
     }
+    
+    /**
+     * Get the UltimateGUI frame
+     * @return UltimateGUI frame
+     */
+    //public UltimateGUI getUGame() {
+    //    return uGame;
+    //}
 }

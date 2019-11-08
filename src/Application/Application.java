@@ -38,8 +38,11 @@ public class Application {
         uView.showBoard(winTest);
         //*/
         
+        //Testing the UltimateController
+        Controller.UltimateController uc = new Controller.UltimateController();
+        uc.start();
         //Testing the Main Menu
-        Controller.MainMenuController mc = new Controller.MainMenuController();
+        //Controller.MainMenuController mc = new Controller.MainMenuController();
         //gamePane.showWin('x');
         //Controller controller = new Controller();
 
