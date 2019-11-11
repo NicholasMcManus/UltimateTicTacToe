@@ -2,6 +2,7 @@ package View;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 
 public class UltimateView {
     
@@ -71,5 +72,14 @@ public class UltimateView {
     public void showBoard(char[][] moves)
     {
         uGame.showBoard(moves);
+    }
+    
+    /**
+     * Allow for window events to be passed by a utilizing class
+     * @param event 
+     */
+    public void setWindowListener(WindowListener event)
+    {
+        uGame.addWindowListener(event);
     }
 }

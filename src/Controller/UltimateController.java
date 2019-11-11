@@ -10,6 +10,7 @@ import View.UltimateView;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 
 /**
  *
@@ -124,6 +125,11 @@ public class UltimateController {
             //System.out.println(turnCount);
         }
         uView.showBoard(space);
+    }
+    
+    public void setWindowProperties(WindowListener event)
+    {
+        this.uView.setWindowListener(event);
     }
     
     /**

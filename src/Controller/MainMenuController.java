@@ -16,6 +16,7 @@ public class MainMenuController {
     private MenuPanel menuPanel;
     private Color player1Color, player2Color;
     private View.SettingGUI setGUI;
+    private UltimateController uControll;
     
     /**
      * Default constructor for a Main Menu
@@ -34,8 +35,9 @@ public class MainMenuController {
         menuList.add(startButton);
         
         startButton.addActionListener((ActionEvent ae) -> {
-            UltimateController uc = new UltimateController();
-            uc.start(player1Color, player2Color);
+            uControll = new UltimateController();
+            uControll.start(player1Color, player2Color);
+            this.setupGameWindow();
             menuPanel.close();
         });
         
@@ -88,6 +90,43 @@ public class MainMenuController {
             public void windowClosed(WindowEvent we) {
                 player1Color = setGUI.getPlayer1Color();
                 player2Color = setGUI.getPlayer2Color();
+            }
+
+            @Override
+            public void windowIconified(WindowEvent we) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent we) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent we) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent we) {
+            }
+        });
+    }
+    
+    /**
+     * Method to allow for the menu to launch when the game is finished/closed
+     */
+    private void setupGameWindow()
+    {
+        uControll.setWindowProperties(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent we) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent we) {
+                menuPanel.open();
+            }
+
+            @Override
+            public void windowClosed(WindowEvent we) {
             }
 
             @Override

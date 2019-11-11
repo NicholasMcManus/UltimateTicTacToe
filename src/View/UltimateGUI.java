@@ -3,6 +3,7 @@ package View;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -79,7 +80,7 @@ public class UltimateGUI extends JFrame implements TicTacToeBoard{
         this.player2Color = player2Color;
         
         //Finalize the frame
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(750, 750);
         setVisible(true);     
     }
@@ -172,7 +173,16 @@ public class UltimateGUI extends JFrame implements TicTacToeBoard{
         
         //Show a more direct message that someone won
         JOptionPane.showMessageDialog(new Frame(), winner + " has won!");
-        System.exit(0);
+        //System.exit(0);
+    }
+    
+    /**
+     * A method to allow a parent class to define window event interaction
+     * @param event The event(s) and handling for each
+     */
+    public void setWindowListener(WindowListener event)
+    {
+        this.addWindowListener(event);
     }
     
 }
