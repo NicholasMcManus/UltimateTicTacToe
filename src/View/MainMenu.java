@@ -11,9 +11,7 @@ package View;
  *
  * @author tme5209
  */
-
 import java.util.ArrayList;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -115,9 +113,4 @@ public class MainMenu extends JPanel  {
     }
     
     //----Additional Methods----\\
-
-    
-
-  
-    
 }//end of class
