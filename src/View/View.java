@@ -1,16 +1,19 @@
 package View;
 
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 public class View {
     //Local Variables
-    TicTacToeConsole game;
-    
+    private ArrayList<TicTacToeBoard> games = new ArrayList();
+    private UltimateGUI uGame;
     //Constructors
     /**
-     * Default Constructor
-     */
+    * Default Constructor
+    */
     public View()
     {
-        game = new TicTacToeConsole();
+        this(TicTacToeConsole.DEFAULT_FILE);
     }
     
     /**
@@ -19,7 +22,10 @@ public class View {
      */
     public View(String fileName)
     {
-        game = new TicTacToeConsole(fileName);
+        games.add(new TicTacToeConsole(fileName));
+        games.add(new TicTacToeGUI());
+        
+        games.forEach(e -> {if (e instanceof TicTacToeGUI) ((TicTacToeGUI) e).startTicTacToeGame();});
     }
     
     /**
@@ -28,7 +34,48 @@ public class View {
      */
     public void showBoard(char[] moves)
     {
-        game.showBoard(moves);
+        games.forEach(var -> var.showBoard(moves));
+    }
+    
+    /**
+     * Uses a scanner to read in a tic-tac-toe move
+     * @return The requested space or -1 if no console views exist
+     */
+    public int consoleMove()
+    {
+        for(TicTacToeBoard board : games)
+        {
+            if(board instanceof TicTacToeConsole)
+                return ((TicTacToeConsole)board).getPlayerTurn();
+        }
+        return -1;
+    }
+    
+    /**
+     * Allow the buttons to be set from another class
+     * @param i Button to be changed, 0 is top left
+     * @param action The action to be performed
+     */
+    public void addActionListener(int i, ActionListener action)
+    {
+        games.forEach(e -> 
+        {
+            if(e instanceof TicTacToeGUI) 
+                    ((TicTacToeGUI)e).addActionListener(i, action);
+        });
+            
+    }
+    
+    /**
+     * Declare someone the winner of the game
+     * @param winner The character of the winner
+     */
+    public void declareWinner(char winner)
+    {
+        games.forEach(e ->
+        {
+           e.showWin(winner);
+        });
     }
     
     /**

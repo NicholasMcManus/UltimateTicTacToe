@@ -8,11 +8,11 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TicTacToeConsole {
+public class TicTacToeConsole implements TicTacToeBoard{
 
     //Class Variables
     private static char placeHolder = '#';
-    private final static String DEFAULT_FILE = "baseTicTacToe.txt";
+    public final static String DEFAULT_FILE = "baseTicTacToe.txt";
 
     private String boardTemplate = "";
     
@@ -106,6 +106,20 @@ public class TicTacToeConsole {
     }
 
     /**
+     * Get the user input and return
+     * @return The input from the user
+     */
+    public int getPlayerTurn()
+    {
+        Scanner input = new Scanner(System.in);
+        int num;
+        
+        System.out.println("Enter number (1-9) to move in the corresponding square");
+        num = input.nextInt();
+        return num;
+    }
+    
+    /**
      * Change the placeholder character
      * @param placeHolder Character to replace with player moves
      */
@@ -126,6 +140,7 @@ public class TicTacToeConsole {
      * Display the tic-tac-toe board with moves inserted from the passed array
      * @param moves Array of length 9 that holds the characters representing player moves
      */
+    @Override
     public void showBoard(char[] moves)
     {
         //Validate input
@@ -144,7 +159,40 @@ public class TicTacToeConsole {
             message += (moves[i] == '\0' ? ' ' : moves[i]) + components[i+1];
         }
         
+        //Output the modified board
         System.out.println(message);
+    }
+
+    /**
+     * Output the moves from an array
+     * @param moves The array containing user moves
+     */
+    @Override
+    public void showBoard(char[][] moves)
+    {
+        //Make sure to reduce indexOutOfBounds errors
+        if(moves.length == 0)
+            return;
+        
+        //Make the local variable able to support all values
+        char[] newMoves = new char[(moves.length*moves[0].length)];
+        
+        //Fill the new array with values from the 1D array
+        for(int outer = 0; outer < 3; outer++)
+            for(int inner = 0; inner < 3; inner++)
+                newMoves[outer*moves.length+inner] = moves[outer][inner];
+        
+        //Display the board from the converted values
+        this.showBoard(newMoves);
+    }
+    
+    /**
+     * Display the winner of the tic-tac-toe game
+     * @param winner The character of who won
+     */
+    @Override
+    public void showWin(char winner) {
+        System.out.println(winner + " has won the game!");
     }
     
     /**
