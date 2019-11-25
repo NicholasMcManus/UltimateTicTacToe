@@ -63,6 +63,7 @@ public class UltimateController {
                     
                     //Update the view
                     uView.showBoard(moves);
+                    setRestriction(button);
                     
                     //Check for a winner and declare one if one is found
                     winner = checkWin(moves[board]);
@@ -147,5 +148,46 @@ public class UltimateController {
         }
         
         return winner;
+    }
+    
+    /**
+     * Sets restriction for the next move
+     * @return The character of the winner if one exists
+     */
+    private void setRestriction(int bound)
+    {
+        switch(bound)
+        {
+            case 0:
+                System.out.println("Next move at board " + (bound+1) + ".");
+                break;
+            case 1:
+                System.out.println("Next move at board " + (bound+1) + ".");
+                break;
+            case 2:
+                System.out.println("Next move at board " + (bound+1) + ".");
+                break;
+            case 3:
+                System.out.println("Next move at board " + (bound+1) + ".");
+                break;
+            case 4:
+                System.out.println("Next move at board " + (bound+1) + ".");
+                break;
+            case 5:
+                System.out.println("Next move at board " + (bound+1) + ".");
+                break;
+            case 6:
+                System.out.println("Next move at board " + (bound+1) + ".");
+                break;
+            case 7:
+                System.out.println("Next move at board " + (bound+1) + ".");
+                break;
+            case 8:
+                System.out.println("Next move at board " + (bound+1) + ".");
+                break;
+            default:
+                System.out.println("Next move at any board.");
+                break;
+        }
     }
 }
