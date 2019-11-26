@@ -23,6 +23,7 @@ public class UltimateController {
     private char[] space = new char[9];
     private char[][] moves = new char[9][9];
     private boolean nextTurn = false;
+    int oldSpace = -1;
     private int turnCount = 1;
     
     //------ Constructors ------\\
@@ -57,24 +58,27 @@ public class UltimateController {
             public void actionPerformed(ActionEvent ae) {
                     char winner;
                     //System.out.println("Index [" + board + "][" + button + "] was clicked!");
-                    
-                    //*/Set the move attempt
-                    claimSpace(board, button);
-                    
-                    //Update the view
-                    uView.showBoard(moves);
-                    setRestriction(button);
-                    
-                    //Check for a winner and declare one if one is found
-                    winner = checkWin(moves[board]);
-                    if(winner != '\0')
+                    if(setRestriction(board, button, oldSpace))
                     {
-                        subWin(board, winner);
-                        winner = checkWin(space);
-                        uView.showBoard(space);
+                        oldSpace = button;
+
+                        //*/Set the move attempt
+                        claimSpace(board, button);
+
+                        //Update the view
+                        uView.showBoard(moves);
+                        
+                        //Check for a winner and declare one if one is found
+                        winner = checkWin(moves[board]);
                         if(winner != '\0')
                         {
-                            uView.declareWinner(winner);
+                            subWin(board, winner);
+                            winner = checkWin(space);
+                            uView.showBoard(space);
+                            if(winner != '\0')
+                            {
+                                uView.declareWinner(winner);
+                            }
                         }
                     }
                 }
@@ -152,42 +156,131 @@ public class UltimateController {
     
     /**
      * Sets restriction for the next move
-     * @return The character of the winner if one exists
      */
-    private void setRestriction(int bound)
+    private boolean setRestriction(int b, int bound, int oldSpace)
     {
+        boolean valid = false;
+        if(oldSpace == -1)
+        {
+            valid = true;
+            System.out.println("Next move at board " + (bound+1) + ".");
+            return valid;
+        }
         switch(bound)
         {
             case 0:
-                System.out.println("Next move at board " + (bound+1) + ".");
-                break;
+                if(oldSpace == b)
+                {
+                    System.out.println("Next move at board " + (bound+1) + ".");
+                    valid = true;
+                    break;
+                }
+                else
+                {
+                    valid = false;
+                    break;
+                }
             case 1:
-                System.out.println("Next move at board " + (bound+1) + ".");
-                break;
+                if(oldSpace == b)
+                {
+                    System.out.println("Next move at board " + (bound+1) + ".");
+                    valid = true;
+                    break;
+                }
+                else
+                {
+                    valid = false;
+                    break;
+                }
             case 2:
-                System.out.println("Next move at board " + (bound+1) + ".");
-                break;
+                if(oldSpace == b)
+                {
+                    System.out.println("Next move at board " + (bound+1) + ".");
+                    valid = true;
+                    break;
+                }
+                else
+                {
+                    valid = false;
+                    break;
+                }
             case 3:
-                System.out.println("Next move at board " + (bound+1) + ".");
-                break;
+                if(oldSpace == b)
+                {
+                    System.out.println("Next move at board " + (bound+1) + ".");
+                    valid = true;
+                    break;
+                }
+                else
+                {
+                    valid = false;
+                    break;
+                }
             case 4:
-                System.out.println("Next move at board " + (bound+1) + ".");
-                break;
+                if(oldSpace == b)
+                {
+                    System.out.println("Next move at board " + (bound+1) + ".");
+                    valid = true;
+                    break;
+                }
+                else
+                {
+                    valid = false;
+                    break;
+                }
             case 5:
-                System.out.println("Next move at board " + (bound+1) + ".");
-                break;
+                if(oldSpace == b)
+                {
+                    System.out.println("Next move at board " + (bound+1) + ".");
+                    valid = true;
+                    break;
+                }
+                else
+                {
+                    valid = false;
+                    break;
+                }
             case 6:
-                System.out.println("Next move at board " + (bound+1) + ".");
-                break;
+                if(oldSpace == b)
+                {
+                    System.out.println("Next move at board " + (bound+1) + ".");
+                    valid = true;
+                    break;
+                }
+                else
+                {
+                    valid = false;
+                    break;
+                }
             case 7:
-                System.out.println("Next move at board " + (bound+1) + ".");
-                break;
+                if(oldSpace == b)
+                {
+                    System.out.println("Next move at board " + (bound+1) + ".");
+                    valid = true;
+                    break;
+                }
+                else
+                {
+                    valid = false;
+                    break;
+                }
             case 8:
-                System.out.println("Next move at board " + (bound+1) + ".");
-                break;
+                if(oldSpace == b)
+                {
+                    System.out.println("Next move at board " + (bound+1) + ".");
+                    valid = true;
+                    break;
+                }
+                else
+                {
+                    valid = false;
+                    break;
+                }
             default:
                 System.out.println("Next move at any board.");
+                valid = true;
                 break;
         }
+        return valid;
     }
 }
