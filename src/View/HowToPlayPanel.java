@@ -30,7 +30,13 @@ public class HowToPlayPanel extends JPanel {
         setSize(1200, 800);
     
         htp = new JLabel("How To Play");
-        description = new JLabel("Game instructions on how to play. What is TicTacToe? Where?");
+        description = new JLabel("<html><div style = 'text-align: center;'>The goal is for the player to win three consecutive boards.<br/>"
+                + "in a row, vertically, horizontally, or diagonally<br/><br/><br/><br/>"
+                + "Player 1 selects a square anywhere on the board and space will turn blue.<br/>"
+                + "Player 2 will then be prompted to the designated space in the output, space will turn red.<br/>"
+                + "Once a player wins a small square, that space will act as a player win marker for that entire space<br/>"
+                + "and each small square acts as a space for the whole board.<br/><br/><br/><br/>"
+                + "Winner will have 3 of the 9 mini boards won consecutively, vertically, horizonbtally, or diagonally");
         
         returnbtn = new JButton("Return to Main");
         
