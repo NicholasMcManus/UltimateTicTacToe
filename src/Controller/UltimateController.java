@@ -60,6 +60,7 @@ public class UltimateController {
                     //System.out.println("Index [" + board + "][" + button + "] was clicked!");
                     if(setRestriction(board, button, oldSpace))
                     {
+                        //Causing issues, implementing workaround
                         oldSpace = button;
 
                         //*/Set the move attempt
@@ -114,6 +115,8 @@ public class UltimateController {
     
     /**
      * lets the player mark their spot 
+     * @param board
+     * @param button 
      */
     private void claimSpace(int board, int button)
     {
@@ -132,6 +135,17 @@ public class UltimateController {
         uView.showBoard(space);
     }
     
+    /**
+     * Determines whether or not a space is occupied
+     * @param move The space to check
+     * @return True if the space is occupied
+     */
+    public boolean checkSpace(int move)
+    {
+        //If the space is occupied by either x or o return true
+        return space[move] == 'X' || space[move] == 'O';
+    }
+    
     public void setWindowProperties(WindowListener event)
     {
         this.uView.setWindowListener(event);
@@ -139,6 +153,7 @@ public class UltimateController {
     
     /**
      * Check the thing for a win
+     * @param board
      * @return The character of the winner if one exists
      */
     private char checkWin(char[] board)
@@ -156,20 +171,29 @@ public class UltimateController {
     
     /**
      * Sets restriction for the next move
+     * @param board The board the button was pressed from
+     * @param bound The button that was pressed
+     * @param oldSpace A record of the space that was chosen before
+     * @return 
      */
-    private boolean setRestriction(int b, int bound, int oldSpace)
+    private boolean setRestriction(int board, int bound, int oldSpace)
     {
         boolean valid = false;
         if(oldSpace == -1)
         {
-            valid = true;
-            System.out.println("Next move at board " + (bound+1) + ".");
-            return valid;
+            System.out.print("First Move: ");
+            bound = -1;
         }
+        else if(checkSpace(oldSpace))
+        {
+            System.out.println("Board occupied: ");
+            bound = -1;
+        }
+        
         switch(bound)
         {
             case 0:
-                if(oldSpace == b)
+                if(oldSpace == board)
                 {
                     System.out.println("Next move at board " + (bound+1) + ".");
                     valid = true;
@@ -181,7 +205,7 @@ public class UltimateController {
                     break;
                 }
             case 1:
-                if(oldSpace == b)
+                if(oldSpace == board)
                 {
                     System.out.println("Next move at board " + (bound+1) + ".");
                     valid = true;
@@ -193,7 +217,7 @@ public class UltimateController {
                     break;
                 }
             case 2:
-                if(oldSpace == b)
+                if(oldSpace == board)
                 {
                     System.out.println("Next move at board " + (bound+1) + ".");
                     valid = true;
@@ -205,7 +229,7 @@ public class UltimateController {
                     break;
                 }
             case 3:
-                if(oldSpace == b)
+                if(oldSpace == board)
                 {
                     System.out.println("Next move at board " + (bound+1) + ".");
                     valid = true;
@@ -217,7 +241,7 @@ public class UltimateController {
                     break;
                 }
             case 4:
-                if(oldSpace == b)
+                if(oldSpace == board)
                 {
                     System.out.println("Next move at board " + (bound+1) + ".");
                     valid = true;
@@ -229,7 +253,7 @@ public class UltimateController {
                     break;
                 }
             case 5:
-                if(oldSpace == b)
+                if(oldSpace == board)
                 {
                     System.out.println("Next move at board " + (bound+1) + ".");
                     valid = true;
@@ -241,7 +265,7 @@ public class UltimateController {
                     break;
                 }
             case 6:
-                if(oldSpace == b)
+                if(oldSpace == board)
                 {
                     System.out.println("Next move at board " + (bound+1) + ".");
                     valid = true;
@@ -253,7 +277,7 @@ public class UltimateController {
                     break;
                 }
             case 7:
-                if(oldSpace == b)
+                if(oldSpace == board)
                 {
                     System.out.println("Next move at board " + (bound+1) + ".");
                     valid = true;
@@ -265,7 +289,7 @@ public class UltimateController {
                     break;
                 }
             case 8:
-                if(oldSpace == b)
+                if(oldSpace == board)
                 {
                     System.out.println("Next move at board " + (bound+1) + ".");
                     valid = true;
