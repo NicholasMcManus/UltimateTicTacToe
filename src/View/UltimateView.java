@@ -18,6 +18,19 @@ public class UltimateView {
         uGame = new UltimateGUI();
     }
     
+    public void setTitle(String title)
+    {
+        uGame.setTitle(title);
+    }
+    
+    /**
+     * Disposes the game allowing it to be ended early by the program
+     */
+    public void dispose()
+    {
+        uGame.dispose();
+    }
+    
     /**
      * Output the moves from the array
      * @param moves 1 Dimensional array with data

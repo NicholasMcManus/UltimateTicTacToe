@@ -16,15 +16,16 @@ import java.awt.event.WindowListener;
  *
  * @author tjell
  */
-public class UltimateController {
+public class UltimateController{
     //------ Variables ------\\
-    Model model;
-    UltimateView uView;
-    private char[] space = new char[9];
-    private char[][] moves = new char[9][9];
-    private boolean nextTurn = false;
-    int oldSpace = -1;
-    private int turnCount = 1;
+    private int oldSpace = -1;
+    private char player1 = 'O', player2 = 'X';
+    protected Model model;
+    protected UltimateView uView;
+    protected char[] space = new char[9];
+    protected char[][] moves = new char[9][9];
+    protected boolean nextTurn = false;
+    protected int turnCount = 1;
     
     //------ Constructors ------\\
     /**
@@ -40,7 +41,7 @@ public class UltimateController {
     /**
      * Initialize the GUI buttons if they are to be used
      *//**/
-    private void initializeGUIButtons()
+    protected void initializeGUIButtons()
     {
         //For every button in the 3x3
         //System.out.println("Initializing buttons...");
@@ -89,7 +90,7 @@ public class UltimateController {
         //System.out.println("Buttons initialized!");
     }/**/
     
-    private void subWin(int board, char winner)
+    protected void subWin(int board, char winner)
     {
         space[board] = winner;
         moves[board] = new char[9];
@@ -118,17 +119,17 @@ public class UltimateController {
      * @param board
      * @param button 
      */
-    private void claimSpace(int board, int button)
+    protected void claimSpace(int board, int button)
     {
         if(turnCount % 2 == 0)
         {
-            moves[board][button] = 'X';
+            moves[board][button] = player1;
             turnCount++;
             //System.out.println(turnCount);
         }
         else
         {
-            moves[board][button] = 'O';
+            moves[board][button] = player2;
             turnCount++;
             //System.out.println(turnCount);
         }
@@ -136,6 +137,7 @@ public class UltimateController {
     }
     
     /**
+<<<<<<< HEAD
      * Determines whether or not a space is occupied
      * @param move The space to check
      * @return True if the space is occupied
@@ -146,6 +148,10 @@ public class UltimateController {
         return space[move] == 'X' || space[move] == 'O';
     }
     
+     /* Set the window properties to allow for methods to run reacting to the
+     * window changes
+     * @param event The event describing window behavior
+     */
     public void setWindowProperties(WindowListener event)
     {
         this.uView.setWindowListener(event);
@@ -153,17 +159,17 @@ public class UltimateController {
     
     /**
      * Check the thing for a win
-     * @param board
+     * @param board The 3x3 board to check for a win
      * @return The character of the winner if one exists
      */
-    private char checkWin(char[] board)
+    protected char checkWin(char[] board)
     {
         char winner = '\0';
         if(model.checkForWinner(board))
         {
             //Someone has won
             //Determine which character won
-            winner = (turnCount-1)%2 == 0 ? 'X' : 'O';
+            winner = (turnCount-1)%2 == 0 ? player1 : player2;
         }
         
         return winner;
