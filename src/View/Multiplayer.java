@@ -1,7 +1,7 @@
 package View;
 
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
@@ -19,11 +19,16 @@ public class Multiplayer extends JFrame{
         super("Network Settings");
         
         mainPanel = new JPanel();
+        ClientGUI client = new ClientGUI();
+        client.setParentFrame(this);
+        
+        ServerGUI server = new ServerGUI();
+        server.setParentFrame(this);
         
         JTabbedPane tabbedPane = new JTabbedPane();
         
-        tabbedPane.addTab("Client", new ClientGUI());
-        tabbedPane.addTab("Server", new ServerGUI());
+        tabbedPane.addTab("Client", client);
+        tabbedPane.addTab("Server", server);
         
         mainPanel.add(tabbedPane);
         
@@ -53,34 +58,10 @@ public class Multiplayer extends JFrame{
     
     private void setupWindowListeners()
     {
-        this.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent we) {
-            }
-
+        this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we) {
                 openOnClose.setVisible(true);
-            }
-
-            @Override
-            public void windowClosed(WindowEvent we) {
-            }
-
-            @Override
-            public void windowIconified(WindowEvent we) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent we) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent we) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent we) {
             }
         });
     }

@@ -4,16 +4,18 @@ package Controller;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.EOFException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class ClientController extends Thread {
@@ -28,6 +30,7 @@ public class ClientController extends Thread {
     private View.MenuPanel menu;
     private JButton colorChange;
     private ClientGame cGame;
+    private JFrame parentFrame;
 
     //GUI Bits
     public static void main(String args[]) {
@@ -61,7 +64,7 @@ public class ClientController extends Thread {
             //Actually what the client does
             //Launch the GUI
             this.buildSimpleMenu();
-        } catch (Exception e) {
+        } catch (SocketException e) {
             e.printStackTrace();
         }
     }
@@ -124,35 +127,10 @@ public class ClientController extends Thread {
                     System.out.println("Launching Game!");
                     menu.close();
                     cGame = new ClientGame(in, out, (Color)current, this.colorChange.getBackground());
-                    cGame.setWindowProperties(new WindowListener() {
-                        @Override
-                        public void windowOpened(WindowEvent we) {
-                        }
-
-                        @Override
-                        public void windowClosing(WindowEvent we) {
-                            
-                        }
-
+                    cGame.setWindowProperties(new WindowAdapter() {
                         @Override
                         public void windowClosed(WindowEvent we) {
                             ClientController.this.menu.setVisible(true);
-                        }
-
-                        @Override
-                        public void windowIconified(WindowEvent we) {
-                        }
-
-                        @Override
-                        public void windowDeiconified(WindowEvent we) {
-                        }
-
-                        @Override
-                        public void windowActivated(WindowEvent we) {
-                        }
-
-                        @Override
-                        public void windowDeactivated(WindowEvent we) {
                         }
                     });   
                 }
@@ -171,7 +149,7 @@ public class ClientController extends Thread {
         } catch (EOFException ex) {
             System.out.println("Lost connection to stream. Shutting down.");
         } catch (IOException ex) {
-            System.out.println("Unable to get streams from client");
+            System.out.println("Unable to get streams from server");
             System.out.println(ex.toString());
             for (Object o : ex.getStackTrace()) {
                 System.err.println(o);
@@ -196,7 +174,12 @@ public class ClientController extends Thread {
         } catch (IOException ex) {
             System.err.println("Something REALLY broke when closing down resources");
         } finally {
+            try{
             this.menu.dispose();
+            }catch (NullPointerException ex)
+            {
+                System.out.println("Null detected, the menu must already be closed.");
+            }
         }
     }
 
@@ -226,35 +209,11 @@ public class ClientController extends Thread {
             public void actionPerformed(ActionEvent e) {
                 ClientController.this.menu.close();
                 View.PlayerColorChooser pc = new View.PlayerColorChooser(colorChange.getBackground());
-                pc.setWindowListener(new WindowListener() {
-                    @Override
-                    public void windowOpened(WindowEvent we) {
-                    }
-
-                    @Override
-                    public void windowClosing(WindowEvent we) {
-                    }
-
+                pc.setWindowListener(new WindowAdapter(){ 
                     @Override
                     public void windowClosed(WindowEvent we) {
                         colorChange.setBackground(pc.getColor());
                         ClientController.this.menu.open();
-                    }
-
-                    @Override
-                    public void windowIconified(WindowEvent we) {
-                    }
-
-                    @Override
-                    public void windowDeiconified(WindowEvent we) {
-                    }
-
-                    @Override
-                    public void windowActivated(WindowEvent we) {
-                    }
-
-                    @Override
-                    public void windowDeactivated(WindowEvent we) {
                     }
                 });
             }
@@ -269,7 +228,18 @@ public class ClientController extends Thread {
                 }
             }
         });
+        this.menu.addWindowListener(new WindowAdapter(){ 
+            @Override
+            public void windowClosed(WindowEvent e)
+            {
+                if(ClientController.this.parentFrame != null)
+                    ClientController.this.parentFrame.setVisible(true);
+            }
+        });
+        
 
     }
-
+    public void setParentFrame(JFrame parentFrame) {
+        this.parentFrame = parentFrame;
+    }    
 }

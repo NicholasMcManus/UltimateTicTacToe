@@ -1,10 +1,10 @@
 package Controller;
 
 //Adapted from IST 220 program designed to play around with sockets
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.EOFException;
@@ -28,6 +28,7 @@ public class ServerController extends Thread{
     private JButton colorChange;
     private Thread thread;
     private ServerGame sGame;
+    private JFrame parentFrame;
     
     private ServerController(Socket socket) {
         try {            
@@ -47,7 +48,7 @@ public class ServerController extends Thread{
         }
     }
  
-    public ServerController(int portNumber)
+    public ServerController(int portNumber) throws SocketTimeoutException
     {
         System.out.println("SocketServer Example");
         ServerSocket server = null;
@@ -70,6 +71,7 @@ public class ServerController extends Thread{
                 
         } catch (SocketTimeoutException to){
             System.out.println("Client took too long to connect");
+            throw to;
         } catch (IOException ex) {
             System.out.println("Unable to start server.");
         } finally {
@@ -103,6 +105,15 @@ public class ServerController extends Thread{
         this.menu.setTitle("Server Menu");
         this.menu.setDefaultCloseOperation(EXIT_ON_CLOSE);     
         
+        this.menu.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent we) {
+                if(ServerController.this.parentFrame != null)
+                    ServerController.this.parentFrame.setVisible(true);
+            }
+        
+        });
+        
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -119,35 +130,11 @@ public class ServerController extends Thread{
             public void actionPerformed(ActionEvent e) {
                 ServerController.this.menu.close();
                 View.PlayerColorChooser pc = new View.PlayerColorChooser(colorChange.getBackground());
-                pc.setWindowListener(new WindowListener() {
-                    @Override
-                    public void windowOpened(WindowEvent we) {
-                    }
-
-                    @Override
-                    public void windowClosing(WindowEvent we) {
-                    }
-
+                pc.setWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent we) {
                         colorChange.setBackground(pc.getColor());
                         ServerController.this.menu.open();
-                    }
-
-                    @Override
-                    public void windowIconified(WindowEvent we) {
-                    }
-
-                    @Override
-                    public void windowDeiconified(WindowEvent we) {
-                    }
-
-                    @Override
-                    public void windowActivated(WindowEvent we) {
-                    }
-
-                    @Override
-                    public void windowDeactivated(WindowEvent we) {
                     }
                 });
             }
@@ -163,6 +150,10 @@ public class ServerController extends Thread{
                 //ServerController.this.menu.dispose();
             }
         });
+    }
+
+    public void setParentFrame(JFrame parentFrame) {
+        this.parentFrame = parentFrame;
     }
     
     @Override
@@ -267,11 +258,14 @@ public class ServerController extends Thread{
                 this.menu.dispose();
             } catch (IOException ex) {
                 ex.printStackTrace();
+            } catch (NullPointerException ex){
+                System.out.println("Something was cleaned up before I got there. ServerController:271");
             }
+            
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SocketTimeoutException {
         new ServerController(8082);
     }
 }
