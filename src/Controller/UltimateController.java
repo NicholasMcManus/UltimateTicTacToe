@@ -16,14 +16,14 @@ import java.awt.event.WindowListener;
  *
  * @author tjell
  */
-public class UltimateController {
+public class UltimateController{
     //------ Variables ------\\
-    Model model;
-    UltimateView uView;
-    private char[] space = new char[9];
-    private char[][] moves = new char[9][9];
-    private boolean nextTurn = false;
-    private int turnCount = 1;
+    protected Model model;
+    protected UltimateView uView;
+    protected char[] space = new char[9];
+    protected char[][] moves = new char[9][9];
+    protected boolean nextTurn = false;
+    protected int turnCount = 1;
     
     //------ Constructors ------\\
     /**
@@ -39,7 +39,7 @@ public class UltimateController {
     /**
      * Initialize the GUI buttons if they are to be used
      *//**/
-    private void initializeGUIButtons()
+    protected void initializeGUIButtons()
     {
         //For every button in the 3x3
         //System.out.println("Initializing buttons...");
@@ -83,7 +83,7 @@ public class UltimateController {
         //System.out.println("Buttons initialized!");
     }/**/
     
-    private void subWin(int board, char winner)
+    protected void subWin(int board, char winner)
     {
         space[board] = winner;
         moves[board] = new char[9];
@@ -110,7 +110,7 @@ public class UltimateController {
     /**
      * lets the player mark their spot 
      */
-    private void claimSpace(int board, int button)
+    protected void claimSpace(int board, int button)
     {
         if(turnCount % 2 == 0)
         {
@@ -127,6 +127,11 @@ public class UltimateController {
         uView.showBoard(space);
     }
     
+    /**
+     * Set the window properties to allow for methods to run reacting to the
+     * window changes
+     * @param event The event describing window behavior
+     */
     public void setWindowProperties(WindowListener event)
     {
         this.uView.setWindowListener(event);
@@ -134,9 +139,10 @@ public class UltimateController {
     
     /**
      * Check the thing for a win
+     * @param board The 3x3 board to check for a win
      * @return The character of the winner if one exists
      */
-    private char checkWin(char[] board)
+    protected char checkWin(char[] board)
     {
         char winner = '\0';
         if(model.checkForWinner(board))

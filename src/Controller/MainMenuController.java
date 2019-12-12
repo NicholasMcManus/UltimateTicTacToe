@@ -41,6 +41,17 @@ public class MainMenuController {
             menuPanel.close();
         });
         
+        //Setup multiplayer button
+        JButton multiButton = new JButton("Network Play");
+        multiButton.setBackground(new Color(0,255,200));
+        menuList.add(multiButton);
+        multiButton.addActionListener((ActionEvent ae) -> {
+            View.Multiplayer mp = new View.Multiplayer();
+            mp.setParentWindow(menuPanel);
+            mp.launchWindow();
+            menuPanel.close();
+        });
+        
         //Setup the settings button
         JButton settingButton = new JButton("Settings");
         settingButton.setBackground(Color.orange);
