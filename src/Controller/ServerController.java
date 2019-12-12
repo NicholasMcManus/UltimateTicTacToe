@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -185,6 +184,10 @@ public class ServerController extends Thread{
                         out.writeObject("q");
                         break;
                     }
+                    else if(request.equals("rQuit"))
+                    {
+                        sGame.dispose();
+                    }
                     else
                     {
                         request += '\n';
@@ -197,36 +200,15 @@ public class ServerController extends Thread{
                     System.out.println("Acknowledgement recieved, let's GOOO!");
                     menu.close();
                     sGame = new ServerGame(in, out, colorChange.getBackground(), (Color)input);
-                    sGame.setWindowProperties(new WindowListener() {
-                        @Override
-                        public void windowOpened(WindowEvent we) {
-                        }
-
-                        @Override
-                        public void windowClosing(WindowEvent we) {
-                            
-                        }
-
+                    sGame.setWindowProperties(new WindowAdapter() {
                         @Override
                         public void windowClosed(WindowEvent we) {
                             ServerController.this.menu.setVisible(true);
-                            
-                        }
-
-                        @Override
-                        public void windowIconified(WindowEvent we) {
-                        }
-
-                        @Override
-                        public void windowDeiconified(WindowEvent we) {
-                        }
-
-                        @Override
-                        public void windowActivated(WindowEvent we) {
-                        }
-
-                        @Override
-                        public void windowDeactivated(WindowEvent we) {
+                            try {
+                                out.writeObject("rQuit");
+                            } catch (IOException ex) {
+                                System.out.println("Could not send close to client");
+                            }
                         }
                     });
                 }

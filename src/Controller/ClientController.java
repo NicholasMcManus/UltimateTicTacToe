@@ -113,14 +113,17 @@ public class ClientController extends Thread {
                         out.writeObject("Q");
                     } else if ("bye".equals(userInput)) {
                         serverShutdown = true;
+                    } else if ("rQuit".equals(userInput)){
+                        cGame.dispose();
                     }
-
+                    
                     System.out.println("server: " + userInput);
                     System.out.println("#: " + ++messageNum);
                     if (serverShutdown) {
                         System.out.println("The server was shutdown");
                         break;
                     }
+                    
                     } else if (current instanceof Color) {
                     System.out.println("Start Request Acknowledged!");
                     out.writeObject(colorChange.getBackground());
@@ -131,6 +134,11 @@ public class ClientController extends Thread {
                         @Override
                         public void windowClosed(WindowEvent we) {
                             ClientController.this.menu.setVisible(true);
+                            try {
+                                out.writeObject("rQuit");
+                            } catch (IOException ex) {
+                                System.out.println("Could not send close to client");
+                            }
                         }
                     });   
                 }
@@ -188,8 +196,6 @@ public class ClientController extends Thread {
 
         JButton start = new JButton("Start");
         start.setBackground(Color.GREEN);
-        //start.setEnabled(false);
-        //buttonList.add(start);
 
         colorChange = new JButton("Set Color");
         colorChange.setBackground(Color.BLUE);

@@ -7,12 +7,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class ClientGame extends UltimateController implements Runnable {
+public class ClientGame extends UltimateController {
 
     //Class Variables
     private ObjectOutputStream out;
     private ObjectInputStream in;
-    private Thread listener;
     private boolean myTurn = false;
 
     public ClientGame(ObjectInputStream in, ObjectOutputStream out, Color player1, Color player2) {
@@ -21,11 +20,14 @@ public class ClientGame extends UltimateController implements Runnable {
         this.in = in;
 
         this.uView.startGame(player1, player2);
-
-        //listener = new Thread(this, "ClientListener");
-        //listener.start();
+        this.uView.setTitle("Ultimate Tic-Tac-Toe: Player 2");
     }
 
+    public void dispose()
+    {
+        this.uView.dispose();
+    }
+    
     public void opponentMove(int board, int button) {
         char winner;
 
@@ -95,16 +97,4 @@ public class ClientGame extends UltimateController implements Runnable {
             }
         }
     }
-
-    @Override
-    public void run() {
-        //Listen for move to be recieved or exit code to be recieved
-        try {
-            System.out.println("Just waiting to hear something...");
-            Thread.sleep(1000);
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
-    }
-
 }

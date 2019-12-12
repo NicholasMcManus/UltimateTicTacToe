@@ -18,6 +18,7 @@ import java.awt.event.WindowListener;
  */
 public class UltimateController{
     //------ Variables ------\\
+    private char player1 = 'O', player2 = 'X';
     protected Model model;
     protected UltimateView uView;
     protected char[] space = new char[9];
@@ -114,13 +115,13 @@ public class UltimateController{
     {
         if(turnCount % 2 == 0)
         {
-            moves[board][button] = 'X';
+            moves[board][button] = player1;
             turnCount++;
             //System.out.println(turnCount);
         }
         else
         {
-            moves[board][button] = 'O';
+            moves[board][button] = player2;
             turnCount++;
             //System.out.println(turnCount);
         }
@@ -149,7 +150,7 @@ public class UltimateController{
         {
             //Someone has won
             //Determine which character won
-            winner = (turnCount-1)%2 == 0 ? 'X' : 'O';
+            winner = (turnCount-1)%2 == 0 ? player1 : player2;
         }
         
         return winner;
