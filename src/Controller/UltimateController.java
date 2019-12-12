@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import Model.Model;
@@ -12,10 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
 
-/**
- *
- * @author tjell
- */
 public class UltimateController{
     //------ Variables ------\\
     private int oldSpace = -1;
@@ -40,11 +31,10 @@ public class UltimateController{
     
     /**
      * Initialize the GUI buttons if they are to be used
-     *//**/
+     */
     protected void initializeGUIButtons()
     {
         //For every button in the 3x3
-        //System.out.println("Initializing buttons...");
         for(int i = 0; i < 9; i++)
         {
             for(int j = 0; j < 9; j++)
@@ -64,7 +54,7 @@ public class UltimateController{
                         //Causing issues, implementing workaround
                         oldSpace = button;
 
-                        //*/Set the move attempt
+                        //Set the move attempt
                         claimSpace(board, button);
 
                         //Update the view
@@ -88,7 +78,7 @@ public class UltimateController{
             }
         }
         //System.out.println("Buttons initialized!");
-    }/**/
+    }
     
     protected void subWin(int board, char winner)
     {
@@ -137,7 +127,6 @@ public class UltimateController{
     }
     
     /**
-<<<<<<< HEAD
      * Determines whether or not a space is occupied
      * @param move The space to check
      * @return True if the space is occupied
