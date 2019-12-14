@@ -11,7 +11,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -34,10 +36,6 @@ public class ClientController extends Thread {
     private JFrame parentFrame;
 
     //GUI Bits
-    public static void main(String args[]) {
-        new ClientController("127.0.0.5", 8082);
-    }
-
     public ClientController(String host, int port) {
         this.address = host;
         this.port = port;
@@ -73,7 +71,10 @@ public class ClientController extends Thread {
     private boolean startClientSocket(String serverHostname, int port) {
         try {
             // instantiate new Socket connected to the server
-            echoSocket = new Socket(InetAddress.getByName(serverHostname), port);
+            echoSocket = new Socket();
+            SocketAddress sock = new InetSocketAddress(InetAddress.getByName(serverHostname), port);
+            echoSocket.connect(sock, 5000);
+            System.out.println(echoSocket.getLocalSocketAddress());
             out = new ObjectOutputStream(echoSocket.getOutputStream());
             in = new ObjectInputStream((echoSocket.getInputStream()));
         } catch (UnknownHostException e) {

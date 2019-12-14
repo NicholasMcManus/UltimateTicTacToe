@@ -31,7 +31,7 @@ public class ServerGame extends UltimateController {
 
     public void opponentMove(int board, int button) {
         char winner;
-        System.out.println("Opponent claims:[" + board + "] [" + button + "]");
+        //System.out.println("Opponent claims:[" + board + "] [" + button + "]");
         super.claimSpace(board, button);
         this.oldSpace = button;
         
@@ -59,7 +59,7 @@ public class ServerGame extends UltimateController {
             try {
                 super.claimSpace(board, button);
                 out.writeObject(new int[]{board, button});
-                System.out.println("You claim:[" + board + "] [" + button + "]");
+                //System.out.println("You claim:[" + board + "] [" + button + "]");
                 myTurn = false;
             } catch (IOException ex) {
                 ex.printStackTrace();

@@ -10,7 +10,6 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -189,7 +188,7 @@ public class ServerController extends Thread{
 
                     if(request.equals("Q"))
                     {
-                        System.out.println("Exit Program!");
+                        System.out.println("Exit Game!");
                         out.writeObject("q");
                         break;
                     }
@@ -250,7 +249,7 @@ public class ServerController extends Thread{
             } catch (IOException ex) {
                 ex.printStackTrace();
             } catch (NullPointerException ex){
-                System.out.println("Something was cleaned up before I got there. ServerController:271");
+                System.out.println("Something was cleaned up before I got there.");
             }
             
         }
