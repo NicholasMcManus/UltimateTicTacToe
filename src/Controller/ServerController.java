@@ -10,6 +10,8 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
@@ -52,8 +54,15 @@ public class ServerController extends Thread{
         System.out.println("SocketServer Example");
         ServerSocket server = null;
         try {
-            server = new ServerSocket(portNumber);
+            //Suggestion for getting local IP, however depends on internet connectivity
+            Socket tsocket = new Socket();
+            tsocket.connect(new InetSocketAddress("google.com", 80));
+            System.out.println(tsocket.getLocalAddress());
             
+            server = new ServerSocket(portNumber, 1, tsocket.getLocalAddress());
+            tsocket.close();
+            
+            System.out.println("Server Address: " + server.getInetAddress() + "\nPort: " + server.getLocalPort());
             //Set server search time to 5 seconds
             server.setSoTimeout(5000);
                 /**

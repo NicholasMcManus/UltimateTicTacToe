@@ -10,6 +10,7 @@ import java.io.EOFException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
@@ -72,7 +73,7 @@ public class ClientController extends Thread {
     private boolean startClientSocket(String serverHostname, int port) {
         try {
             // instantiate new Socket connected to the server
-            echoSocket = new Socket(serverHostname, port);
+            echoSocket = new Socket(InetAddress.getByName(serverHostname), port);
             out = new ObjectOutputStream(echoSocket.getOutputStream());
             in = new ObjectInputStream((echoSocket.getInputStream()));
         } catch (UnknownHostException e) {
