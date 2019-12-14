@@ -9,7 +9,7 @@ import java.awt.event.WindowListener;
 
 public class UltimateController{
     //------ Variables ------\\
-    private int oldSpace = -1;
+    protected int oldSpace = -1;
     private char player1 = 'O', player2 = 'X';
     protected Model model;
     protected UltimateView uView;

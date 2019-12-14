@@ -32,7 +32,8 @@ public class ClientGame extends UltimateController {
         char winner;
         System.out.println("Opponent claims:[" + board + "] [" + button + "]");
         super.claimSpace(board, button);
-
+        this.oldSpace = button;
+        
         //Update the view
         uView.showBoard(moves);
 
