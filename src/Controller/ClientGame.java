@@ -30,8 +30,8 @@ public class ClientGame extends UltimateController {
     
     public void opponentMove(int board, int button) {
         char winner;
-
-        claimSpace(board, button);
+        System.out.println("Opponent claims:[" + board + "] [" + button + "]");
+        super.claimSpace(board, button);
 
         //Update the view
         uView.showBoard(moves);
@@ -49,52 +49,19 @@ public class ClientGame extends UltimateController {
         
         myTurn = true;
     }
-    
-    @Override
-    protected void initializeGUIButtons() {
-        //For every button in the 3x3
-        //System.out.println("Initializing buttons...");
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                //Appease the lambda
-                final int board = i;
-                final int button = j;
-
-                //Add an action listener as defined below
-                uView.addActionListener(i, j, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent ae) {
-                        //If it is my turn, do the things!
-                        if (myTurn) {
-                            char winner;
-                            //System.out.println("Index [" + board + "][" + button + "] was clicked!");
-
-                            //*/Set the move attempt
-                            claimSpace(board, button);
-                            myTurn = false;
-                            
-                            //Update the view
-                            uView.showBoard(moves);
-                            try {
-                                out.writeObject(new int[]{board, button});
-                            } catch (IOException ex) {
-                                ex.printStackTrace();
-                            }
-                            
-                            //Check for a winner and declare one if one is found
-                            winner = checkWin(moves[board]);
-                            if (winner != '\0') {
-                                subWin(board, winner);
-                                winner = checkWin(space);
-                                uView.showBoard(space);
-                                if (winner != '\0') {
-                                    uView.declareWinner(winner);
-                                }
-                            }//*/
-                        }
-                    }
-                });
+    //*/
+       @Override
+    protected void claimSpace(int board, int button) {
+        if (myTurn) {
+            try {
+                super.claimSpace(board, button);
+                out.writeObject(new int[]{board, button});
+                System.out.println("You claim:[" + board + "] [" + button + "]");
+                myTurn = false;
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
-        }
+        }        
     }
+    //*/
 }
