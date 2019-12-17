@@ -30,17 +30,18 @@ public class ClientController extends Thread {
     private ObjectInputStream in = null;
     private int port;
     private String address;
-    private View.MenuPanel menu;
+    private View.MenuPanel menu = null;
     private JButton colorChange;
     private ClientGame cGame;
-    private JFrame parentFrame;
+    private JFrame parentFrame = null;
 
     /**
      * Default constructor
      * @param host The IP address to connect to
      * @param port The port number of connect to
+     * @throws java.net.SocketException
      */
-    public ClientController(String host, int port) {
+    public ClientController(String host, int port) throws SocketException {
         this.address = host;
         this.port = port;
 
@@ -68,7 +69,9 @@ public class ClientController extends Thread {
             //Launch the GUI
             this.buildSimpleMenu();
         } catch (SocketException e) {
-            e.printStackTrace();
+            System.out.println("SocketException: " + e);
+            throw e;
+            //e.printStackTrace();
         }
     }
 
@@ -177,9 +180,7 @@ public class ClientController extends Thread {
         } catch (IOException ex) {
             System.out.println("Unable to get streams from server");
             System.out.println(ex.toString());
-            for (Object o : ex.getStackTrace()) {
-                System.err.println(o);
-            }
+            
         } catch (ClassNotFoundException ex) {
             System.err.println("Something broke when reading a class from the stream...");
         } finally {
@@ -196,19 +197,18 @@ public class ClientController extends Thread {
             /**
              * Closing all the resources
              */
-            out.close();
-            in.close();
-            echoSocket.close();
+            if(out != null)
+                out.close();
+            if(in != null)
+                in.close();
+            if(echoSocket != null)
+                echoSocket.close();
             System.out.println("Object resources cleaned up!");
         } catch (IOException ex) {
             System.err.println("Something REALLY broke when closing down resources");
         } finally {
-            try{
-            this.menu.dispose();
-            }catch (NullPointerException ex)
-            {
-                System.out.println("Null detected, the menu must already be closed.");
-            }
+            if(menu != null)
+                this.menu.dispose();
         }
     }
 
