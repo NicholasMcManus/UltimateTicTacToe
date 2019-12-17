@@ -8,6 +8,7 @@ import View.MenuPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import javax.swing.JFrame;
 
 public class MainMenuController {
     
@@ -65,6 +66,21 @@ public class MainMenuController {
         howToButton = new JButton("How to Play");
         howToButton.setBackground(Color.LIGHT_GRAY);
         menuList.add(howToButton);
+        howToButton.addActionListener((ActionEvent ae) -> {
+           //Create a frame
+           JFrame newWindow = new JFrame("How to Play"); 
+           View.HowToPlayPanel hPlay = new View.HowToPlayPanel();
+           newWindow.add(hPlay);
+           newWindow.setSize(1200,550);
+           
+           //Make the return button work
+           hPlay.getReturnBtn().addActionListener((ActionEvent ae2) -> {
+               newWindow.dispose();
+           });
+           
+           newWindow.setVisible(true);
+           newWindow.requestFocus();
+        });
         
         //Setup the Quit button
         quitButton = new JButton("Quit");
