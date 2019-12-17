@@ -91,6 +91,7 @@ public class UltimateController{
     protected void subWin(int board, char winner)
     {
         space[board] = winner;
+        sendInfo(board, turnCount);
         moves[board] = new char[9];
     }
     
@@ -314,6 +315,11 @@ public class UltimateController{
     public void sendInfo(int board, int button, int count)
     {
         model.sendInfo(board, button, count);
+    }
+    
+    public void sendInfo(int board, int count)
+    {
+        model.sendInfo(board, count);
     }
     
 }

@@ -119,4 +119,9 @@ public class Model {
     {
         player.getInfo(board, button, count);
     }
+    
+    public void sendInfo(int board, int count)
+    {
+        player.getInfo(board, count);
+    }
 } // End of class
