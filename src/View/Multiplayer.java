@@ -38,6 +38,10 @@ public class Multiplayer extends JFrame{
     }
     
     //----Set Methods----\\
+    /**
+     * Setup a parent window to be opened when the frame is closed
+     * @param window 
+     */
     public void setParentWindow(JFrame window)
     {
         this.openOnClose = window;
@@ -48,6 +52,9 @@ public class Multiplayer extends JFrame{
 
     
     //----Additional Methods----\\
+    /**
+     * Actually launch and show the multiplayer menu
+     */
     public void launchWindow()
     {
         setSize(300, 100);
@@ -56,6 +63,9 @@ public class Multiplayer extends JFrame{
         setVisible(true);
     }
     
+    /**
+     * Setup the window listener to open the parent window when closed
+     */
     private void setupWindowListeners()
     {
         this.addWindowListener(new WindowAdapter() {

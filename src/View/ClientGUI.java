@@ -14,6 +14,9 @@ public class ClientGUI extends JPanel{
     private Controller.ClientController cControl;
     private JFrame parentFrame = null;
     
+    /**
+     * Default constructor for a ClientGUI
+     */
     public ClientGUI()
     {
         super();
@@ -33,11 +36,18 @@ public class ClientGUI extends JPanel{
         });
     }
     
+    /**
+     * Pass a parent frame to be opened when the opened window is closed
+     * @param frame 
+     */
     public void setParentFrame(JFrame frame)
     {
         parentFrame = frame;
     }
     
+    /**
+     * What to do when the button is pressed
+     */
     private void connect()
     {
         if(parentFrame != null)

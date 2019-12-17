@@ -30,6 +30,9 @@ public class TicTacToeGUI extends JFrame implements TicTacToeBoard{
         this.add(gamePanel, "Center");
     }
 
+    /**
+     * Actually start the tic-tac-toe game
+     */
     public void startTicTacToeGame()
     {
         //Finalize the frame

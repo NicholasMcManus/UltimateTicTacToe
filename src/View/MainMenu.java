@@ -12,14 +12,9 @@ package View;
  * @author tme5209
  */
 import java.util.ArrayList;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.event.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MainMenu extends JPanel  {
@@ -87,7 +82,7 @@ public class MainMenu extends JPanel  {
     
     /**
      * Add the buttons to the JPanel
-     * @param buttons 
+     * @param buttons The list of buttons to be made into a menu
      */
     private void addButtons(ArrayList<JButton> buttons)
     {
@@ -100,17 +95,29 @@ public class MainMenu extends JPanel  {
     }
 
     //----Get Methods----\\
+    /**
+     * Get the start button
+     * @return The start button
+     */
     public JButton getStartButton() {
         return startButton;
     }
 
+    /**
+     * Get the how to button
+     * @return The how to button
+     */
     public JButton getHowtoButton() {
         return howtoButton;
     }
 
+    /**
+     * Get the quit button
+     * @return The quit button
+     */
     public JButton getQuitButton() {
         return quitButton;
     }
     
     //----Additional Methods----\\
-}//end of class
+}

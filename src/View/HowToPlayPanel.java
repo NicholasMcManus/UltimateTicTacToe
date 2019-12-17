@@ -6,7 +6,6 @@
 package View;
 
 import java.awt.Color;
-import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,6 +21,9 @@ public class HowToPlayPanel extends JPanel {
     private JButton returnbtn;
     
      // Constructors
+    /**
+     * Default constructor for a how to play panel
+     */
     public HowToPlayPanel() {
         // initialize default values
         super();
@@ -54,6 +56,10 @@ public class HowToPlayPanel extends JPanel {
     
     }
     
+    /**
+     * Allow for the return button to be modified
+     * @return A JButton to be modified
+     */
      public JButton getReturnBtn() {
         return returnbtn;
     }

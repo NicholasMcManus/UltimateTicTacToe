@@ -16,6 +16,9 @@ public class ServerGUI extends JPanel{
     private Controller.ServerController sControl;
     private JFrame parentFrame;
     
+    /**
+     * Default constructor for the ServerGUI
+     */
     public ServerGUI()
     {
         super();
@@ -34,11 +37,18 @@ public class ServerGUI extends JPanel{
         });
     }
     
-        public void setParentFrame(JFrame frame)
+    /**
+     * Set the parent gui to be opened when the launched frame is closed
+     * @param frame 
+     */
+    public void setParentFrame(JFrame frame)
     {
         parentFrame = frame;
     }
     
+    /**
+     * Method to handle when the button is pressed
+     */
     private void startServer()
     {
         if(this.parentFrame != null)
