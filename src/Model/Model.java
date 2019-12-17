@@ -4,8 +4,7 @@ import java.util.Scanner;
 
 public class Model {
     //------ Variables ------\\
-    Player p1;
-    Player p2;
+    Player player;
     Scanner input = new Scanner(System.in);
     
     //------ Constructors ------\\
@@ -14,8 +13,7 @@ public class Model {
      */
     public Model()
     {
-        p1 = new Player();
-        p2 = new Player();
+        player = new Player();
     }
     
     
@@ -114,5 +112,11 @@ public class Model {
         {
             return false;
         }
-    }    
+    }
+
+
+    public void sendInfo(int board, int button, int count)
+    {
+        player.getInfo(board, button, count);
+    }
 } // End of class

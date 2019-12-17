@@ -60,6 +60,9 @@ public class UltimateController{
                         //Update the view
                         uView.showBoard(moves);
                         
+                        //Send info to model
+                        sendInfo(board, button, turnCount);
+                        
                         //Check for a winner and declare one if one is found
                         winner = checkWin(moves[board]);
                         if(winner != '\0')
@@ -174,7 +177,7 @@ public class UltimateController{
      * @param board The board the button was pressed from
      * @param bound The button that was pressed
      * @param oldSpace A record of the space that was chosen before
-     * @return 
+     * @return boolean to allow the move or not
      */
     private boolean setRestriction(int board, int bound, int oldSpace)
     {
@@ -307,4 +310,10 @@ public class UltimateController{
         }
         return valid;
     }
+    
+    public void sendInfo(int board, int button, int count)
+    {
+        model.sendInfo(board, button, count);
+    }
+    
 }
