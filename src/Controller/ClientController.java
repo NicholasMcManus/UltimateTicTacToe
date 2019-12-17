@@ -35,7 +35,11 @@ public class ClientController extends Thread {
     private ClientGame cGame;
     private JFrame parentFrame;
 
-    //GUI Bits
+    /**
+     * Default constructor
+     * @param host The IP address to connect to
+     * @param port The port number of connect to
+     */
     public ClientController(String host, int port) {
         this.address = host;
         this.port = port;
@@ -68,6 +72,12 @@ public class ClientController extends Thread {
         }
     }
 
+    /**
+     * Actually start the client socket
+     * @param serverHostname The IP address to connect to
+     * @param port The port to connect to
+     * @return If it was successful or not
+     */
     private boolean startClientSocket(String serverHostname, int port) {
         try {
             // instantiate new Socket connected to the server
@@ -88,11 +98,17 @@ public class ClientController extends Thread {
         return true;
     }
 
+    /**
+     * Run the thread that sits and waits for information to be sent
+     */
     @Override
     public void run() {
         this.watchSocket();
     }
 
+    /**
+     * The code that runs when watching for 
+     */
     private void watchSocket() {
         try {
             /**
@@ -171,6 +187,9 @@ public class ClientController extends Thread {
         }
     }
 
+    /**
+     * Shut down the required resources
+     */
     private void shutdownResources() {
         try {
             //End of what the client does
@@ -193,6 +212,9 @@ public class ClientController extends Thread {
         }
     }
 
+    /**
+     * Put together the menu to be displayed
+     */
     public void buildSimpleMenu() {
         ArrayList<JButton> buttonList = new ArrayList();
 
@@ -247,6 +269,11 @@ public class ClientController extends Thread {
         
 
     }
+    
+    /**
+     * Setup the window to be opened when the menu is closed
+     * @param parentFrame 
+     */
     public void setParentFrame(JFrame parentFrame) {
         this.parentFrame = parentFrame;
     }    

@@ -80,6 +80,11 @@ public class UltimateController{
         //System.out.println("Buttons initialized!");
     }
     
+    /**
+     * Set the winner of a sub-board
+     * @param board The board won
+     * @param winner The character of the winner
+     */
     protected void subWin(int board, char winner)
     {
         space[board] = winner;

@@ -14,6 +14,13 @@ public class ServerGame extends UltimateController {
     private ObjectInputStream in;
     private boolean myTurn = true;
 
+    /**
+     * Create a server object to host a game of ultimate tic-tac-toe
+     * @param in The stream to read from
+     * @param out The stream to write to
+     * @param player1 The color of the first player
+     * @param player2 The color of the second player
+     */
     public ServerGame(ObjectInputStream in, ObjectOutputStream out, Color player1, Color player2) {
         super();
         this.out = out;
@@ -25,10 +32,18 @@ public class ServerGame extends UltimateController {
         //Syncronize exits
     }
 
+    /**
+     * A way to close the game with code
+     */
     public void dispose() {
         this.uView.dispose();
     }
 
+    /**
+     * Record the opponents move, has less restrictions compared to standard move
+     * @param board The board the play from from
+     * @param button The space the play was made on
+     */
     public void opponentMove(int board, int button) {
         char winner;
         //System.out.println("Opponent claims:[" + board + "] [" + button + "]");
@@ -52,7 +67,11 @@ public class ServerGame extends UltimateController {
         myTurn = true;
     }
 
-    //*
+    /**
+     * Let a player claim a space as long as it it their turn
+     * @param board The board to try and play on
+     * @param button The space trying to be played
+     */
     @Override
     protected void claimSpace(int board, int button) {
         if (myTurn) {
@@ -66,5 +85,4 @@ public class ServerGame extends UltimateController {
             }
         }        
     }
-    //*/
 }

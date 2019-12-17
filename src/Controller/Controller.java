@@ -198,6 +198,11 @@ public class Controller {
         return space[move] == 'X' || space[move] == 'O';
     }
     
+    /**
+     * Get the color of which move it should be
+     * @param index I honestly have no idea what this is for
+     * @return The color of whose turn it is
+     */
     private Color claimSpace(int index)
     {
         Color r = Color.red; // change later with color picker

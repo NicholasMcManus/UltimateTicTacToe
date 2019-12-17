@@ -1,8 +1,6 @@
 package Controller;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -14,6 +12,13 @@ public class ClientGame extends UltimateController {
     private ObjectInputStream in;
     private boolean myTurn = false;
 
+    /**
+     * Construct a game that can be played with two people using ObjectStreams
+     * @param in The inputStream to read from
+     * @param out The outputStream to write to
+     * @param player1 The color of player 1
+     * @param player2 The color of player 2
+     */
     public ClientGame(ObjectInputStream in, ObjectOutputStream out, Color player1, Color player2) {
         super();
         this.out = out;
@@ -23,11 +28,19 @@ public class ClientGame extends UltimateController {
         this.uView.setTitle("Ultimate Tic-Tac-Toe: Player 2");
     }
 
+    /**
+     * Close the game when called
+     */
     public void dispose()
     {
         this.uView.dispose();
     }
     
+    /**
+     * The method to play a move for the opponent
+     * @param board The board that was played on
+     * @param button The space that was played on
+     */
     public void opponentMove(int board, int button) {
         char winner;
         //System.out.println("Opponent claims:[" + board + "] [" + button + "]");
@@ -50,8 +63,13 @@ public class ClientGame extends UltimateController {
         
         myTurn = true;
     }
-    //*/
-       @Override
+    
+    /**
+     * Let the player mark their spot
+     * @param board The board that was played on
+     * @param button The position in the board that was played on
+     */
+    @Override
     protected void claimSpace(int board, int button) {
         if (myTurn) {
             try {
@@ -64,5 +82,5 @@ public class ClientGame extends UltimateController {
             }
         }        
     }
-    //*/
+    
 }

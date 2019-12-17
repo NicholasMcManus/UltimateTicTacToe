@@ -30,6 +30,10 @@ public class ServerController extends Thread{
     private ServerGame sGame;
     private JFrame parentFrame;
     
+    /**
+     * Given a working socket do more things
+     * @param socket The socket to make the main
+     */
     private ServerController(Socket socket) {
         try {            
             this.socket = socket;
@@ -48,6 +52,11 @@ public class ServerController extends Thread{
         }
     }
  
+    /**
+     * Initialize a server with a port number
+     * @param portNumber The port to bind the server to
+     * @throws SocketTimeoutException 
+     */
     public ServerController(int portNumber) throws SocketTimeoutException
     {
         System.out.println("SocketServer Example");
@@ -91,6 +100,9 @@ public class ServerController extends Thread{
         }
     }
         
+    /**
+     * Launch the menu to be interacted with
+     */
     public void buildSimpleMenu()
     {
         ArrayList<JButton> buttonList = new ArrayList();
@@ -159,10 +171,17 @@ public class ServerController extends Thread{
         });
     }
 
+    /**
+     * Set the frame to be opened when the menu is closed
+     * @param parentFrame 
+     */
     public void setParentFrame(JFrame parentFrame) {
         this.parentFrame = parentFrame;
     }
     
+    /**
+     * The code to run what is basically a listener
+     */
     @Override
     public void run() {
         //Variables to manipulate the socket buffers
@@ -255,6 +274,11 @@ public class ServerController extends Thread{
         }
     }
 
+    /**
+     * A quick main method to allow for local testing
+     * @param args Not really used
+     * @throws SocketTimeoutException 
+     */
     public static void main(String[] args) throws SocketTimeoutException {
         new ServerController(8082);
     }
